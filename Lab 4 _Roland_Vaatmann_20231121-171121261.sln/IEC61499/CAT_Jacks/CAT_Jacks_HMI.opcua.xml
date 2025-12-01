@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OPCUAObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OPCUAVariable UID="7FA1A9EE9729B982" Enabled="false">
+    <OPCUAAttribute Name="AccessLevel" Value="1" Locked="true" AttributeMask="Read Only;True" />
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath}</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+  <OPCUAVariable UID="528FCE09179CFC3C" Enabled="false">
+    <OPCUAAttribute Name="AccessLevel" Value="1" Locked="true" AttributeMask="Read Only;True" />
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath}</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+  <OPCUAVariable UID="5B93840E32D0D8A" Enabled="false">
+    <OPCUAAttribute Name="AccessLevel" Value="1" Locked="true" AttributeMask="Read Only;True" />
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath}</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+</OPCUAObject>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="261d1f0b-92eb-4760-86fb-82742b2eea12" Name="Jack_Sledge_Place" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="24" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="4/24/2020" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="E_EXTEND">
+        <With Var="Extend" />
+      </Event>
+      <Event Name="E_DOWN">
+        <With Var="Down" />
+      </Event>
+      <Event Name="E_VAC_ON">
+        <With Var="Vac" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="Extend" Type="BOOL" />
+      <VarDeclaration Name="Down" Type="BOOL" />
+      <VarDeclaration Name="Vac" Type="BOOL" />
+    </OutputVars>
+    <Sockets>
+      <AdapterDeclaration Name="Input" Type="HandshakeAdapter_Proposal" Namespace="Main" x="340" y="2060" />
+    </Sockets>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="5" Name="FB1" Type="E_SPLIT" x="2260" y="1260" Namespace="IEC61499.Standard" />
+    <FB ID="16" Name="FB12" Type="JackDecode_New" x="1280" y="2000" Namespace="Main" />
+    <FB ID="17" Name="FB2" Type="JackPlaceWP" x="2960" y="1180" Namespace="Main" />
+    <FB ID="18" Name="FB3" Type="JackRemoveWP" x="2960" y="2440" Namespace="Main" />
+    <FB ID="19" Name="FB4" Type="OP_Select_Str" x="5040" y="2200" Namespace="Main" />
+    <FB ID="20" Name="FB5" Type="E_DELAY" x="4160" y="1480" Namespace="IEC61499.Standard">
+      <Parameter Name="DT" Value="T#1.5s" />
+    </FB>
+    <FB ID="21" Name="FB6" Type="E_DELAY" x="4200" y="2740" Namespace="IEC61499.Standard">
+      <Parameter Name="DT" Value="T#1.5s" />
+    </FB>
+    <FB ID="22" Name="FB7" Type="OP_Selection" x="5900" y="1320" Namespace="Main" />
+    <FB ID="23" Name="FB8" Type="OP_Selection" x="5960" y="2180" Namespace="Main" />
+    <FB ID="24" Name="FB9" Type="OP_Selection" x="6000" y="3000" Namespace="Main" />
+    <Input Name="INIT" x="1020" y="2012" Type="Event" />
+    <Output Name="E_EXTEND" x="6440" y="1332" Type="Event" />
+    <Output Name="E_DOWN" x="6540" y="2192" Type="Event" />
+    <Output Name="E_VAC_ON" x="6500" y="3012" Type="Event" />
+    <Output Name="INITO" x="2160" y="2012" Type="Event" />
+    <Output Name="Extend" x="6300" y="1712" Type="Data" />
+    <Output Name="Down" x="6420" y="2572" Type="Data" />
+    <Output Name="Vac" x="6500" y="3392" Type="Data" />
+    <EventConnections>
+      <Connection Source="Input.E_Data1" Destination="FB12.E_ActionIP" />
+      <Connection Source="INIT" Destination="FB12.INIT">
+        <Points>
+          <Points>
+            <X>317.145874</X>
+            <Y>510</Y>
+          </Points>
+          <Points>
+            <X>315</X>
+            <Y>510</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="FB1.EO1" Destination="FB2.RESET" dx1="277.1563">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.EO2" Destination="FB3.RESET" dx1="154.3125">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB12.INITO" Destination="INITO" />
+      <Connection Source="FB12.J1P" Destination="FB2.TRIGGER" dx1="691.021">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB12.J1R" Destination="FB3.TRIGGER" dx1="691.021">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.E_Status" Destination="FB4.Block1" dx1="1218.146">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB3.E_Status" Destination="FB4.Block2" dx1="1085.958">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.E_OP" Destination="Input.E_Data4">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB5.EO" Destination="FB2.E_Delay_Done">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB2.E_Delay_Start" Destination="FB5.START">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB3.E_DELAY_START" Destination="FB6.START" />
+      <Connection Source="FB6.EO" Destination="FB3.E_DELAY_DONE">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB2.E_EXTEND" Destination="FB7.E1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB3.E_EXTEND" Destination="FB7.E3">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.E_DOWN" Destination="FB8.E1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB3.E_DOWN" Destination="FB8.E3">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB3.E_VAC_ON" Destination="FB9.E3">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB2.E_VAC_ON" Destination="FB9.E1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB8.CNF_OP" Destination="E_DOWN" />
+      <Connection Source="FB9.CNF_OP" Destination="E_VAC_ON" />
+      <Connection Source="FB7.CNF_OP" Destination="E_EXTEND" />
+      <Connection Source="Input.E_Data3" Destination="FB1.EI" dx1="52.52087" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Input.Data1" Destination="FB12.ActionIP" dx1="40" />
+      <Connection Source="FB2.Status" Destination="FB4.Data1" dx1="1158.146">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB3.Status" Destination="FB4.Data2" dx1="1025.958">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.Output" Destination="Input.Data4">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB7.OP" Destination="Extend" />
+      <Connection Source="FB8.OP" Destination="Down" />
+      <Connection Source="FB9.OP" Destination="Vac" />
+      <Connection Source="FB2.EXTEND" Destination="FB7.IP1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB3.EXTEND" Destination="FB7.IP2">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB2.DOWN" Destination="FB8.IP1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB3.DOWN" Destination="FB8.IP2">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB3.VAC_ON" Destination="FB9.IP2">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB2.VAC_ON" Destination="FB9.IP1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+    </DataConnections>
+  </FBNetwork>
+</FBType>

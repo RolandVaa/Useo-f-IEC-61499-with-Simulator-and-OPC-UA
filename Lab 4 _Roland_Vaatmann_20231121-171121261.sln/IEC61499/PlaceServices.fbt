@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="d5c8e5f5-5461-4a3a-8857-646f2e78b431" Name="PlaceServices" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="8" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="11/3/2020" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+    </EventOutputs>
+    <Sockets>
+      <AdapterDeclaration Name="Adp_Jack" Type="Adapter_Handshake" Namespace="Main" x="900" y="1000" />
+    </Sockets>
+    <Plugs>
+      <AdapterDeclaration Name="Jack1" Type="HandshakeAdapter_Proposal" Namespace="Main" x="3320" y="1000" />
+      <AdapterDeclaration Name="Jack2" Type="HandshakeAdapter_Proposal" Namespace="Main" x="3340" y="1680" />
+    </Plugs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="6" Name="FB4" Type="Place_Services" x="2020" y="940" Namespace="Main" />
+    <FB ID="7" Name="FB5" Type="OP_Select_Str" x="4560" y="1000" Namespace="Main" />
+    <FB ID="8" Name="FB1" Type="E_SPLIT" x="2200" y="1760" Namespace="IEC61499.Standard" />
+    <Input Name="INIT" x="1640" y="952" Type="Event" />
+    <Output Name="INITO" x="2740" y="952" Type="Event" />
+    <EventConnections>
+      <Connection Source="FB4.E_Jack1" Destination="Jack1.E_Data1">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.E_Jack2" Destination="Jack2.E_Data1" dx1="80" />
+      <Connection Source="Jack1.E_Data4" Destination="FB5.Block1" />
+      <Connection Source="Jack2.E_Data4" Destination="FB5.Block2" dx1="52.521" />
+      <Connection Source="Adp_Jack.E_Data3" Destination="FB4.E_ActionIP" />
+      <Connection Source="INIT" Destination="FB4.INIT" />
+      <Connection Source="FB4.INITO" Destination="INITO" />
+      <Connection Source="Adp_Jack.Reset_O" Destination="FB1.EI" dx1="60" />
+      <Connection Source="FB1.EO1" Destination="Jack1.E_Data3" dx1="674.3125">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.EO2" Destination="Jack2.E_Data3" dx1="70" />
+      <Connection Source="FB5.E_OP" Destination="Adp_Jack.E_Data1" dx1="40" dx2="30" dy="-420">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB4.Jack1" Destination="Jack1.Data1" dx1="60" />
+      <Connection Source="FB4.Jack2" Destination="Jack2.Data1" dx1="40" />
+      <Connection Source="Jack1.Data4" Destination="FB5.Data1" dx1="342.521">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Jack2.Data4" Destination="FB5.Data2" dx1="562.521">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Adp_Jack.Data3" Destination="FB4.ActionIP" dx1="75.9585" />
+      <Connection Source="FB5.Output" Destination="Adp_Jack.Data1" dx1="40" dx2="30" dy="1240">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </DataConnections>
+  </FBNetwork>
+</FBType>

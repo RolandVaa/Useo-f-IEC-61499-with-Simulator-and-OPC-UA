@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Lab 4 _ firstname_lastname" Guid="{7EE16F89-AE58-40FC-BD3C-86DD5B9A7045}" Version="1.5.0.0" xmlns="http://www.nxtcontrol.com/IEC61499.xsd">
+  <Archive>
+    <ExcludeDir>
+      <string>Exports</string>
+      <string>Imports</string>
+      <string>Documentation</string>
+      <string>TestReports</string>
+    </ExcludeDir>
+  </Archive>
+  <References />
+  <CanvasResolution StartCanvasClass="HMI.Main.Canvases.StartCanvas" Width="1280" Height="980" WorkAreaWidth="1280" WorkAreaHeight="900" Template="Default" Login="true" NavigationControl="0" CurrentUser="true" LanguageButton="true" RuntimeConnection="true" Logger="false" NavigationBar="true" NewVersionDeployed="true" Exit="false" ShowWarningMessage="false" WarningText="" SiblingButtonCount="5" ChildButtonCount="5" IsCanvasTopologyPanel="true" ResizeBehaviour="None">
+    <Topology Name="Default">
+      <Canvases>
+        <Canvas Name="Canvas1" Title="" Tooltip="" Instance="HMI.Main.Canvases.Canvas1" />
+      </Canvases>
+    </Topology>
+  </CanvasResolution>
+  <CanvasResolution StartCanvasClass="" Width="-1" Height="-1" WorkAreaWidth="-1" WorkAreaHeight="-1" Template="" Login="true" NavigationControl="0" CurrentUser="true" LanguageButton="true" RuntimeConnection="true" Logger="false" NavigationBar="true" NewVersionDeployed="true" Exit="false" ShowWarningMessage="false" WarningText="" SiblingButtonCount="5" ChildButtonCount="5" IsCanvasTopologyPanel="true" ResizeBehaviour="None">
+    <Topology Name="Default" />
+  </CanvasResolution>
+  <Graphics Name="Graphics" IsExternal="false" />
+  <WebGraphics Name="WebGraphics" IsExternal="false" />
+  <Security Level="Internal" IsActive="true">
+    <Info>﻿&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;UserManager xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" HighestID="2"&gt;&lt;UserInfos Name="DIAS" Password="$1$311A84CCB1FBF28455C3CB3085A2FAD5DAD54B6E7037F39514F629B596F34FFB$041F36EBAB1B31E125D535B2AF1E9837B553EA06FE2724331C9D8D1991566219" SecurityToken="127" ID="1" MeetsCalLaw="true" /&gt;&lt;/UserManager&gt;</Info>
+  </Security>
+  <PluginGUIDs />
+  <ConnectableAdapterList>
+    <ConnectableAdapters>
+      <CompatibleType Type="IHwSlaveConfig" Namespace="SE.FieldDevice" />
+      <CompatibleType Type="IHwSlaveConfig" Namespace="Standard.IoModbus" />
+    </ConnectableAdapters>
+  </ConnectableAdapterList>
+</ProjectDatabase>

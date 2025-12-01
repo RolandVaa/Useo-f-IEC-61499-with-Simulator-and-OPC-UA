@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="40e95af3-8510-46f4-82ef-8f23705a5976" Name="DeliveryServices_Adp" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="4" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="11/25/2020" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="CommandOut" />
+      </Event>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="CommandOut" Type="STRING[60]" Comment="Output event qualifier" />
+    </OutputVars>
+    <Sockets>
+      <AdapterDeclaration Name="Adp_DeliveryServices" Type="Adapter_Handshake" Namespace="Main" x="500" y="1240" />
+    </Sockets>
+    <Plugs>
+      <AdapterDeclaration Name="Adp_Command" Type="HandshakeAdapter_Proposal" Namespace="Main" x="2320" y="1180" />
+    </Plugs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="2" Name="FB2" Type="DeliveryOrganisation" x="1340" y="1180" Namespace="Main" />
+    <Input Name="INIT" x="975.7083" y="1032" Type="Event" />
+    <Output Name="INITO" x="2159.115" y="972" Type="Event" />
+    <Output Name="CommandOut" x="2280" y="1932" Type="Data" />
+    <Output Name="CNF" x="2160" y="1032" Type="Event" />
+    <EventConnections>
+      <Connection Source="Adp_Command.E_Data4" Destination="Adp_DeliveryServices.E_Data1" dx1="102.521" dx2="60" dy="-280">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.CNF" Destination="Adp_Command.E_Data1" dx1="82.02087">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.CNF" Destination="CNF" dx1="82.02087">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Adp_DeliveryServices.E_Data3" Destination="FB2.REQ" />
+      <Connection Source="INIT" Destination="FB2.INIT" dx1="45.70837" />
+      <Connection Source="FB2.INITO" Destination="INITO" dx1="52.02075" />
+      <Connection Source="Adp_DeliveryServices.Reset_O" Destination="Adp_Command.E_Data3">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Adp_Command.Data4" Destination="Adp_DeliveryServices.Data1" dx1="82.521" dx2="80" dy="260">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.CommandOut" Destination="Adp_Command.Data1" dx1="40" />
+      <Connection Source="FB2.CommandOut" Destination="CommandOut" dx1="42.02075">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Adp_DeliveryServices.Data3" Destination="FB2.CommandIn" dx1="95.95837" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="6fc4921b-ee2e-4da6-be07-d4646686bbcc" Name="ConveyorAdvanced_2" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/24/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="E_Command">
+        <With Var="Command" />
+        <With Var="ConveyorNumber" />
+      </Event>
+      <Event Name="E_SensorCurrent">
+        <With Var="CurrentSensor" />
+      </Event>
+      <Event Name="E_PrevSensor">
+        <With Var="PrevSensor" />
+      </Event>
+      <Event Name="E_NextSensor">
+        <With Var="NextSensor" />
+      </Event>
+      <Event Name="Reset" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="E_CommandOut">
+        <With Var="CommandOut" />
+      </Event>
+      <Event Name="DONE" Comment="Execution Confirmation">
+        <With Var="OpConfirmation" />
+      </Event>
+      <Event Name="DRIVE_ON">
+        <With Var="DRIVE" />
+      </Event>
+      <Event Name="DRIVE_OFF">
+        <With Var="DRIVE" />
+      </Event>
+      <Event Name="SENSOR_E" />
+      <Event Name="E_OpStarted" />
+      <Event Name="PrevSensorRec" />
+      <Event Name="NextSensorRec" />
+      <Event Name="E_State">
+        <With Var="State" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Command" Type="STRING[60]" />
+      <VarDeclaration Name="CurrentSensor" Type="BOOL">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+        <Attribute Name="Runtime.OPCUA.WriteTrigger" Value="SENSOR" />
+      </VarDeclaration>
+      <VarDeclaration Name="PrevSensor" Type="BOOL" />
+      <VarDeclaration Name="NextSensor" Type="BOOL" />
+      <VarDeclaration Name="ConveyorNumber" Type="STRING[60]" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="DRIVE" Type="BOOL">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+      </VarDeclaration>
+      <VarDeclaration Name="CommandOut" Type="STRING[60]" />
+      <VarDeclaration Name="OpConfirmation" Type="STRING[60]" />
+      <VarDeclaration Name="State" Type="STRING[60]" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,START,STOP,MessageCheck,done,Suspend,stateD,stateP,stateC" />
+    <InternalVars>
+      <VarDeclaration Name="C" Type="STRING[60]" />
+      <VarDeclaration Name="P" Type="STRING[60]" />
+      <VarDeclaration Name="D" Type="STRING[60]" />
+      <VarDeclaration Name="commandCheck" Type="STRING[60]" />
+      <VarDeclaration Name="TriggerDelivery" Type="BOOL" />
+      <VarDeclaration Name="TriggerConveyor" Type="BOOL" />
+      <VarDeclaration Name="TriggerWait" Type="BOOL" />
+      <VarDeclaration Name="Suspend" Type="BOOL" />
+      <VarDeclaration Name="C_INT" Type="DINT" />
+      <VarDeclaration Name="D_INT" Type="DINT" />
+      <VarDeclaration Name="P_INT" Type="DINT" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="4671.892" y="1185.189" />
+      <ECState Name="MessageCheck" x="4802.619" y="2130">
+        <ECAction Algorithm="MessageCheck" Output="E_CommandOut" />
+      </ECState>
+      <ECState Name="DStart" x="1983.619" y="3252">
+        <ECAction Algorithm="START" Output="DRIVE_ON" />
+        <ECAction Output="PrevSensorRec" />
+      </ECState>
+      <ECState Name="CStart" x="6907.619" y="2492">
+        <ECAction Algorithm="START" Output="DRIVE_ON" />
+        <ECAction Algorithm="stateC" Output="E_State" />
+      </ECState>
+      <ECState Name="DDone" x="1795.619" y="2140">
+        <ECAction Algorithm="STOP" Output="DRIVE_OFF" />
+        <ECAction Algorithm="done" Output="DONE" />
+        <ECAction Output="E_State" />
+      </ECState>
+      <ECState Name="CStop" x="6879.619" y="3076">
+        <ECAction Algorithm="STOP" Output="DRIVE_OFF" />
+        <ECAction Output="NextSensorRec" />
+        <ECAction Output="E_State" />
+      </ECState>
+      <ECState Name="PStart" x="4647.619" y="4239.999">
+        <ECAction Algorithm="START" Output="DRIVE_ON" />
+      </ECState>
+      <ECState Name="PStop" x="3488.19" y="3908.571">
+        <ECAction Algorithm="STOP" Output="DRIVE_OFF" />
+        <ECAction Output="NextSensorRec" />
+        <ECAction Output="E_State" />
+      </ECState>
+      <ECState Name="STATE1" x="2707.619" y="2640">
+        <ECAction Algorithm="stateD" Output="E_State" />
+      </ECState>
+      <ECState Name="STATE2" x="4681.778" y="3480.445">
+        <ECAction Algorithm="stateP" Output="E_State" />
+      </ECState>
+      <ECTransition Source="START" Destination="MessageCheck" Condition="E_Command" x="4566.771" y="1544.756">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1125.922,341.7711,1135.421,411.8002" />
+      </ECTransition>
+      <ECTransition Source="MessageCheck" Destination="STATE1" Condition="TriggerDelivery" x="3633.155" y="2402.98">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="971.9138,584.2108,831.2545,619.1697" />
+      </ECTransition>
+      <ECTransition Source="MessageCheck" Destination="STATE2" Condition="TriggerWait" x="4670.419" y="2777.764">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1167.131,640.2617,1157.901,744.0436" />
+      </ECTransition>
+      <ECTransition Source="MessageCheck" Destination="CStart" Condition="TriggerConveyor" x="5877.489" y="2347.483">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1392.036,575.4197,1541.419,601.3273" />
+      </ECTransition>
+      <ECTransition Source="DStart" Destination="DDone" Condition="E_SensorCurrent &amp; CurrentSensor" x="1824.222" y="2632.818">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="457.7375,697.2686,445.131,608.61" />
+      </ECTransition>
+      <ECTransition Source="DDone" Destination="MessageCheck" Condition="E_Command" x="3280.329" y="2085.386">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="712.0676,518.2264,933.3635,517.8904" />
+      </ECTransition>
+      <ECTransition Source="CStart" Destination="CStop" Condition="E_NextSensor &amp; NextSensor" x="6974.696" y="2787.592">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1749.335,677.2124,1747.418,717.182" />
+      </ECTransition>
+      <ECTransition Source="CStop" Destination="MessageCheck" Condition="E_Command" x="5846.861" y="2681.456">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1541.731,711.9329,1384.922,640.6219" />
+      </ECTransition>
+      <ECTransition Source="PStop" Destination="MessageCheck" Condition="E_Command" x="4082.385" y="3077.059">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="964.0115,843.862,1067.059,704.2964" />
+      </ECTransition>
+      <ECTransition Source="PStart" Destination="PStop" Condition="E_NextSensor &amp; NextSensor" x="3890.546" y="4312.514">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1000.277,1105.474,923.0259,1083.417" />
+      </ECTransition>
+      <ECTransition Source="STATE1" Destination="DStart" Condition="(E_PrevSensor &amp; PrevSensor) OR (E_PrevSensor &amp; NOT PrevSensor)" x="2414.713" y="3000.257">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="630.502,733.4753,581.3187,775.6341" />
+      </ECTransition>
+      <ECTransition Source="MessageCheck" Destination="MessageCheck" Condition="E_Command" x="5116.043" y="1608.101">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1349.823,447.7968,1251.902,277.9675" />
+      </ECTransition>
+      <ECTransition Source="STATE2" Destination="PStart" Condition="(E_PrevSensor &amp; PrevSensor) OR (E_PrevSensor &amp; NOT PrevSensor)" x="4744.457" y="3867.758">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1192.374,940.268,1189.918,994.8671" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="MessageCheck" Comment="Normally executed algorithm">
+      <ST Text="&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;// commandCheck := LEFT(Command,2);&#xD;&#xA;C := CONCAT('C',ConveyorNumber);&#xD;&#xA;P := CONCAT('P',ConveyorNumber);&#xD;&#xA;D := CONCAT('D',ConveyorNumber);&#xD;&#xA;&#xD;&#xA;C_INT := FIND(Command,C);&#xD;&#xA;P_INT := FIND(Command,P);&#xD;&#xA;D_INT := FIND(Command,D);&#xD;&#xA;&#xD;&#xA;IF C_INT = 1 THEN&#xD;&#xA;	TriggerConveyor := TRUE;&#xD;&#xA;	CommandOut := DELETE(Command,3,1);&#xD;&#xA;ELSIF P_INT = 1 THEN&#xD;&#xA;	TriggerWait := TRUE;&#xD;&#xA;	CommandOut := DELETE(Command,3,1);&#xD;&#xA;ELSIF D_INT = 1 THEN&#xD;&#xA;	TriggerDelivery := TRUE;&#xD;&#xA;	CommandOut := DELETE(Command,3,1);&#xD;&#xA;	&#xD;&#xA;ELSE&#xD;&#xA;	Suspend := TRUE;&#xD;&#xA;	CommandOut := Command;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="START">
+      <ST Text="DRIVE := TRUE;" />
+    </Algorithm>
+    <Algorithm Name="STOP">
+      <ST Text="DRIVE := FALSE;&#xD;&#xA;&#xD;&#xA;TriggerConveyor := FALSE;&#xD;&#xA;TriggerDelivery := FALSE;&#xD;&#xA;TriggerWait := FALSE;&#xD;&#xA;State := '';&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="done">
+      <ST Text="&#xD;&#xA;OpConfirmation := CONCAT('C',ConveyorNumber,'_DONE');&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="Suspend">
+      <ST Text="Suspend := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="stateD">
+      <ST Text="State := CONCAT('D',ConveyorNumber);" />
+    </Algorithm>
+    <Algorithm Name="stateP">
+      <ST Text="State := CONCAT('P',ConveyorNumber);" />
+    </Algorithm>
+    <Algorithm Name="stateC">
+      <ST Text="State := CONCAT('C',ConveyorNumber);" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

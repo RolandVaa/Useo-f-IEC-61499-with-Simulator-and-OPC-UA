@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="0a99d79b-2634-4337-bd1b-4bd01af28f95" Name="CAT_Conveyor_1" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="5" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmBH" Version="0.0" Author="prana" Date="16/08/2021" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="ConveyorNumber" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="Drive" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="Drive" />
+        <With Var="State" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ConveyorNumber" Type="STRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Drive" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="State" Type="STRING[60]" />
+    </OutputVars>
+    <AdapterInputs>
+      <Adapter Name="Input" Type="HandshakeAdapter_Proposal" Namespace="Main" />
+      <Adapter Name="CommandIp" Type="HandshakeAdapter_Proposal" Namespace="Main" />
+    </AdapterInputs>
+    <AdapterOutputs>
+      <Adapter Name="Output" Type="HandshakeAdapter_Proposal" Namespace="Main" />
+    </AdapterOutputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="3" Name="IThis" Type="CAT_Conveyor_1_HMI" x="3460" y="1920" Namespace="Main">
+      <Parameter Name="QI" Value="TRUE" />
+    </FB>
+    <FB ID="5" Name="FB2" Type="Conveyor_SL_1_Adp" x="1980" y="1920" Namespace="Main" />
+    <Input Name="INIT" x="1620" y="1932" Type="Event" />
+    <Input Name="Input" x="920" y="2372" Type="Adapter" />
+    <Input Name="ConveyorNumber" x="1080" y="2252" Type="Data" />
+    <Input Name="CommandIp" x="780" y="2432" Type="Adapter" />
+    <Output Name="State" x="3098.417" y="2932" Type="Data" />
+    <Output Name="Output" x="4300" y="2392" Type="Adapter" />
+    <Output Name="INITO" x="4420" y="1932" Type="Event" />
+    <Output Name="CNF" x="4420" y="1992" Type="Event" />
+    <Output Name="Drive" x="4300" y="2312" Type="Data" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB2.INIT" />
+      <Connection Source="FB2.INITO" Destination="IThis.INIT">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.CNF" Destination="IThis.REQ">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="IThis.INITO" Destination="INITO" />
+      <Connection Source="IThis.CNF" Destination="FB2.E_Sensor" dx1="264" dx2="30" dy="-170">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="IThis.CNF" Destination="CNF">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB2.DRIVE" Destination="IThis.C_Drive">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.DRIVE" Destination="IThis.C_Drive_Cur" dx1="365">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="IThis.C_Sensor" Destination="FB2.SENSOR" dx1="40" dx2="30" dy="210" />
+      <Connection Source="IThis.C_Sensor" Destination="Drive" />
+      <Connection Source="ConveyorNumber" Destination="FB2.ConveyorNumber" />
+      <Connection Source="FB2.State" Destination="State" dx1="60" />
+    </DataConnections>
+    <AdapterConnections>
+      <Connection Source="Input" Destination="FB2.Input" />
+      <Connection Source="FB2.Output" Destination="Output" dx1="40" />
+      <Connection Source="CommandIp" Destination="FB2.CommandIp" />
+    </AdapterConnections>
+  </FBNetwork>
+</FBType>

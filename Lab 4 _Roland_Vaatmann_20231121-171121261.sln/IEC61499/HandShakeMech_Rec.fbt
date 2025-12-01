@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="606fbda7-8574-4d5a-9b00-63c9f58058aa" Name="HandShakeMech_Rec" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="11/3/2020" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="DataInput" />
+      </Event>
+      <Event Name="E_DataIP" Comment="Normal Execution Request">
+        <With Var="DataInput" />
+      </Event>
+      <Event Name="E_OperationStarted" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="OpAction" />
+      </Event>
+      <Event Name="E_DataOP" Comment="Execution Confirmation">
+        <With Var="OpAction" />
+      </Event>
+      <Event Name="E_MessageConfirmation">
+        <With Var="MessageConfirmation" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="DataInput" Type="STRING[60]" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OpAction" Type="STRING[60]" Comment="Output event qualifier" />
+      <VarDeclaration Name="MessageConfirmation" Type="STRING[60]" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,MessageVerification,OperationStarted,startOperation" />
+    <InternalVars>
+      <VarDeclaration Name="i" Type="INT" />
+      <VarDeclaration Name="j" Type="INT" />
+      <VarDeclaration Name="l" Type="INT" />
+      <VarDeclaration Name="c" Type="INT" />
+      <VarDeclaration Name="prevCount" Type="STRING[60]" />
+      <VarDeclaration Name="prevCommand" Type="STRING[60]" InitialValue="''" />
+      <VarDeclaration Name="OperationStarted" Type="BOOL" InitialValue="FALSE" />
+      <VarDeclaration Name="CurrentCommand" Type="STRING[60]" />
+      <VarDeclaration Name="CurrentCount" Type="STRING[60]" />
+      <VarDeclaration Name="ResendConfirmation" Type="BOOL" />
+      <VarDeclaration Name="RestartOperation" Type="BOOL" />
+      <VarDeclaration Name="StartOperation" Type="BOOL" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="2044.941" y="1481.412" />
+      <ECState Name="INIT" Comment="Initialization" x="2019.531" y="1025.177">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="MessageVerification" x="3564" y="1492">
+        <ECAction Algorithm="MessageVerification" />
+      </ECState>
+      <ECState Name="ConfirmationSystem" x="4936.573" y="2949.144">
+        <ECAction Algorithm="OperationStarted" Output="E_MessageConfirmation" />
+      </ECState>
+      <ECState Name="Wait" x="5300.571" y="1268.571" />
+      <ECState Name="StartOperation" x="1894.846" y="2695.524">
+        <ECAction Algorithm="startOperation" Output="E_DataOP" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1900.727" y="1253.405">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="470.0531,328.3317,466.608,298.3889" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="2113.019" y="1240.337">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="531.3867,295.3011,533.5914,322.7076" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="MessageVerification" Condition="E_DataIP" x="2731.846" y="1475.082">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="637.1403,368.124,729.4435,368.3484" />
+      </ECTransition>
+      <ECTransition Source="ConfirmationSystem" Destination="Wait" Condition="1" x="5183.54" y="2122.798">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1286.834,599.1188,1314.422,464.6034" />
+      </ECTransition>
+      <ECTransition Source="Wait" Destination="MessageVerification" Condition="E_DataIP" x="4596.168" y="1288.724">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1274.219,318.0195,1047.354,315.2939" />
+      </ECTransition>
+      <ECTransition Source="MessageVerification" Destination="StartOperation" Condition="StartOperation OR RestartOperation" x="2396.864" y="2000.796">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="647.4003,445.6494,509.0446,539.2545" />
+      </ECTransition>
+      <ECTransition Source="StartOperation" Destination="ConfirmationSystem" Condition="E_OperationStarted" x="3199.763" y="3241.939">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="680.499,831.2918,890.8179,850.9152" />
+      </ECTransition>
+      <ECTransition Source="MessageVerification" Destination="ConfirmationSystem" Condition="ResendConfirmation" x="3996.679" y="2341.068">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="929.4778,538.9424,1035.667,651.674" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text="&#xD;&#xA;prevCommand := '';&#xD;&#xA;OperationStarted := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="MessageVerification">
+      <ST Text="// Datainput example: C2_to_C5,2&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;i := DINT_TO_INT(FIND(DataInput,':'));&#xD;&#xA;i := i - 1;&#xD;&#xA;CurrentCommand := LEFT(DataInput,i);  //seperate message count from action information eg: C2_to_C5&#xD;&#xA;&#xD;&#xA;l := DINT_TO_INT(LEN(DataInput));&#xD;&#xA;c := l - (DINT_TO_INT(FIND(DataInput,':')));   &#xD;&#xA;CurrentCount := RIGHT(DataInput,c);    //Store Message count.... eg: 2 from above example &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;IF CurrentCount = '1' THEN&#xD;&#xA;	StartOperation := TRUE;&#xD;&#xA;	&#xD;&#xA;ELSIF CurrentCount &lt;&gt; '1' THEN&#xD;&#xA;	IF (CurrentCommand = prevCommand) &amp; (OperationStarted) THEN&#xD;&#xA;		ResendConfirmation := TRUE;&#xD;&#xA;	ELSIF (CurrentCommand = prevCommand) &amp; (NOT OperationStarted) THEN&#xD;&#xA;		RestartOperation := TRUE;&#xD;&#xA;	ELSIF (CurrentCommand &lt;&gt; prevCommand) THEN&#xD;&#xA;		StartOperation := TRUE;	&#xD;&#xA;	END_IF;&#xD;&#xA;END_IF;&#xD;&#xA;&#xD;&#xA;prevCommand := CurrentCommand;&#xD;&#xA;prevCount := CurrentCount;&#xD;&#xA;OperationStarted := FALSE;&#xD;&#xA;	&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;	&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="OperationStarted">
+      <ST Text="&#xD;&#xA;MessageConfirmation := CONCAT(DataInput,';R');&#xD;&#xA;ResendConfirmation := FALSE;&#xD;&#xA;OperationStarted := TRUE;" />
+    </Algorithm>
+    <Algorithm Name="startOperation">
+      <ST Text="OpAction := CurrentCommand;&#xD;&#xA;&#xD;&#xA;RestartOperation := FALSE;&#xD;&#xA;StartOperation := FALSE;&#xD;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

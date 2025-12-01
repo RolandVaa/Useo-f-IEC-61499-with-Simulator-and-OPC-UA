@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="ec6353fa-6522-4c6c-baf1-2de3a4f2df2d" Name="JackHAL_HW" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="17" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/26/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="DOWN">
+        <With Var="JACK_DOWN" />
+      </Event>
+      <Event Name="EXTEND">
+        <With Var="JACK_EXTEND" />
+      </Event>
+      <Event Name="VAC_ON">
+        <With Var="JACK_VAC" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="TOP">
+        <With Var="Top" />
+        <With Var="Bottom" />
+      </Event>
+      <Event Name="BOTTOM">
+        <With Var="Bottom" />
+        <With Var="Top" />
+      </Event>
+      <Event Name="EXTENDED">
+        <With Var="Extended" />
+        <With Var="Retracted" />
+      </Event>
+      <Event Name="RETRACTED">
+        <With Var="Retracted" />
+        <With Var="Extended" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="JACK_EXTEND" Type="BOOL" Comment="New value(i) for the named variable element" />
+      <VarDeclaration Name="JACK_DOWN" Type="BOOL" Comment="New value(i) for the named variable element" />
+      <VarDeclaration Name="JACK_VAC" Type="BOOL" Comment="New value(i) for the named variable element" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Top" Type="BOOL" Comment="Current value(i) in the named variable array element" />
+      <VarDeclaration Name="Bottom" Type="BOOL" Comment="Current value(i) in the named variable array element" />
+      <VarDeclaration Name="Extended" Type="BOOL" Comment="Current value(i) in the named variable array element" />
+      <VarDeclaration Name="Retracted" Type="BOOL" Comment="Current value(i) in the named variable array element" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="16" UID="1" Name="Nxt1Inputs" Type="SYMLINKMULTIVARDST_19628BFC3C74F1AB1" x="1300" y="720" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=4;VALUE${I}:BOOL,BOOL,BOOL,BOOL" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="NAME1" Value="'$${PATH}JACK_TOP'" />
+      <Parameter Name="NAME2" Value="'$${PATH}JACK_BOTTOM'" />
+      <Parameter Name="NAME3" Value="'$${PATH}EXTENDED'" />
+      <Parameter Name="NAME4" Value="'$${PATH}RETRACTED'" />
+    </FB>
+    <FB ID="17" UID="3" Name="Nxt1Outputs" Type="SYMLINKMULTIVARSRC_151ACB50A2F8223B2" x="2820" y="1880" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=3;VALUE${I}:BOOL,BOOL,BOOL" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="NAME1" Value="'$${PATH}JACK_EXTEND'" />
+      <Parameter Name="NAME2" Value="'$${PATH}JACK_DOWN'" />
+      <Parameter Name="NAME3" Value="'$${PATH}VACUUM'" />
+    </FB>
+    <FB ID="7" Name="JACK_EXTENDED" Type="E_R_TRIG" x="2700" y="940" Namespace="IEC61499.Standard" />
+    <FB ID="8" Name="JACK_RETRACTED" Type="E_R_TRIG" x="2720" y="1360" Namespace="IEC61499.Standard" />
+    <FB ID="9" Name="JACK_TOP" Type="E_R_TRIG" x="2020" y="340" Namespace="IEC61499.Standard" />
+    <FB ID="10" Name="JACK_BOTTOM" Type="E_R_TRIG" x="2700" y="360" Namespace="IEC61499.Standard" />
+    <FB ID="11" Name="FB1" Type="E_DELAY" x="3140" y="360" Namespace="IEC61499.Standard">
+      <Parameter Name="DT" Value="T#200ms" />
+    </FB>
+    <FB ID="12" Name="FB2" Type="E_PERMIT" x="3620" y="360" Namespace="IEC61499.Standard" />
+    <FB ID="14" Name="FB3" Type="E_MERGE" x="1620" y="1940" Namespace="IEC61499.Standard" />
+    <FB ID="15" Name="FB4" Type="E_MERGE" x="2060" y="1940" Namespace="IEC61499.Standard" />
+    <Input Name="INIT" x="940" y="732" Type="Event" />
+    <Input Name="DOWN" x="1120" y="1952" Type="Event" />
+    <Input Name="EXTEND" x="1120" y="2012" Type="Event" />
+    <Input Name="VAC_ON" x="1140" y="2292" Type="Event" />
+    <Input Name="JACK_EXTEND" x="2200" y="2272" Type="Data" />
+    <Input Name="JACK_DOWN" x="2200" y="2392" Type="Data" />
+    <Input Name="JACK_VAC" x="2220" y="2512" Type="Data" />
+    <Output Name="Top" x="1960" y="1112" Type="Data" />
+    <Output Name="Bottom" x="1960" y="1172" Type="Data" />
+    <Output Name="Extended" x="1960" y="1232" Type="Data" />
+    <Output Name="Retracted" x="1960" y="1292" Type="Data" />
+    <Output Name="INITO" x="3460" y="1892" Type="Event" />
+    <Output Name="TOP" x="2280" y="352" Type="Event" />
+    <Output Name="BOTTOM" x="4060" y="372" Type="Event" />
+    <Output Name="EXTENDED" x="3080" y="952" Type="Event" />
+    <Output Name="RETRACTED" x="3100" y="1372" Type="Event" />
+    <EventConnections>
+      <Connection Source="JACK_EXTENDED.EO" Destination="EXTENDED" />
+      <Connection Source="JACK_RETRACTED.EO" Destination="RETRACTED" />
+      <Connection Source="JACK_TOP.EO" Destination="TOP">
+        <Points>
+          <Points>
+            <X>572.0677</X>
+            <Y>95</Y>
+          </Points>
+          <Points>
+            <X>570</X>
+            <Y>95</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="JACK_BOTTOM.EO" Destination="FB1.START" />
+      <Connection Source="FB1.EO" Destination="FB2.EI" />
+      <Connection Source="FB2.EO" Destination="BOTTOM" />
+      <Connection Source="FB3.EO" Destination="FB4.EI1" />
+      <Connection Source="VAC_ON" Destination="FB4.EI2" dx1="446.7292" />
+      <Connection Source="DOWN" Destination="FB3.EI1" />
+      <Connection Source="EXTEND" Destination="FB3.EI2" />
+      <Connection Source="INIT" Destination="Nxt1Inputs.INIT" />
+      <Connection Source="Nxt1Inputs.CNF" Destination="JACK_RETRACTED.EI" dx1="751.625">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Nxt1Inputs.CNF" Destination="JACK_EXTENDED.EI" dx1="751.625">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Nxt1Inputs.CNF" Destination="JACK_TOP.EI" dx1="70" />
+      <Connection Source="Nxt1Inputs.CNF" Destination="JACK_BOTTOM.EI" dx1="751.625">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Nxt1Inputs.INITO" Destination="Nxt1Outputs.INIT">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB4.EO" Destination="Nxt1Outputs.REQ" />
+      <Connection Source="Nxt1Outputs.INITO" Destination="INITO" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Nxt1Inputs.VALUE1" Destination="JACK_TOP.QI" dx1="131.625">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Nxt1Inputs.VALUE2" Destination="JACK_BOTTOM.QI">
+        <Points>
+          <Points>
+            <X>462.09375</X>
+            <Y>300</Y>
+          </Points>
+          <Points>
+            <X>489.59375</X>
+            <Y>300</Y>
+          </Points>
+          <Points>
+            <X>489.59375</X>
+            <Y>272.5</Y>
+          </Points>
+          <Points>
+            <X>582.5</X>
+            <Y>272.5</Y>
+          </Points>
+          <Points>
+            <X>582.5</X>
+            <Y>150</Y>
+          </Points>
+          <Points>
+            <X>670</X>
+            <Y>150</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="Nxt1Inputs.VALUE2" Destination="FB2.PERMIT">
+        <Points>
+          <Points>
+            <X>462.09375</X>
+            <Y>300</Y>
+          </Points>
+          <Points>
+            <X>489.59375</X>
+            <Y>300</Y>
+          </Points>
+          <Points>
+            <X>489.59375</X>
+            <Y>217.5</Y>
+          </Points>
+          <Points>
+            <X>882.5</X>
+            <Y>217.5</Y>
+          </Points>
+          <Points>
+            <X>882.5</X>
+            <Y>150</Y>
+          </Points>
+          <Points>
+            <X>900</X>
+            <Y>150</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="Nxt1Inputs.VALUE3" Destination="JACK_EXTENDED.QI">
+        <Points>
+          <Points>
+            <X>462.09375</X>
+            <Y>315</Y>
+          </Points>
+          <Points>
+            <X>485</X>
+            <Y>315</Y>
+          </Points>
+          <Points>
+            <X>485</X>
+            <Y>385</Y>
+          </Points>
+          <Points>
+            <X>640</X>
+            <Y>385</Y>
+          </Points>
+          <Points>
+            <X>640</X>
+            <Y>295</Y>
+          </Points>
+          <Points>
+            <X>670</X>
+            <Y>295</Y>
+          </Points>
+        </Points>
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Nxt1Inputs.VALUE4" Destination="JACK_RETRACTED.QI" dx1="51.625">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="JACK_EXTEND" Destination="Nxt1Outputs.VALUE1">
+        <Points>
+          <Points>
+            <X>703.854248</X>
+            <Y>575</Y>
+          </Points>
+          <Points>
+            <X>700</X>
+            <Y>575</Y>
+          </Points>
+        </Points>
+      </Connection>
+      <Connection Source="JACK_DOWN" Destination="Nxt1Outputs.VALUE2" />
+      <Connection Source="JACK_VAC" Destination="Nxt1Outputs.VALUE3" />
+      <Connection Source="Nxt1Inputs.VALUE1" Destination="Top" />
+      <Connection Source="Nxt1Inputs.VALUE2" Destination="Bottom" />
+      <Connection Source="Nxt1Inputs.VALUE3" Destination="Extended" />
+      <Connection Source="Nxt1Inputs.VALUE4" Destination="Retracted" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

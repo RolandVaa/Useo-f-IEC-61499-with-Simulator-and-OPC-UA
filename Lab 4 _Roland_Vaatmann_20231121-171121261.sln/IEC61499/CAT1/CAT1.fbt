@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="41a98127-e497-4a0d-8875-0154830abf56" Name="CAT1" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="3" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Pranay Jhunjhunwala" Date="22/06/2021" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="e_bool_in" Comment="Normal Execution Request">
+        <With Var="In_bool" />
+      </Event>
+      <Event Name="e_int_in">
+        <With Var="In_Int" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="e_bool_out" Comment="Execution Confirmation">
+        <With Var="Out_Bool" />
+      </Event>
+      <Event Name="e_int_out">
+        <With Var="Out_Int" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="In_bool" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="In_Int" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Out_Bool" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="Out_Int" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="IThis" Type="CAT1_HMI" x="1380" y="380" Namespace="Main">
+      <Parameter Name="QI" Value="TRUE" />
+    </FB>
+    <Input Name="INIT" x="880" y="392" Type="Event" />
+    <Input Name="e_bool_in" x="880" y="452" Type="Event" />
+    <Input Name="In_bool" x="760" y="772" Type="Data" />
+    <Input Name="In_Int" x="780" y="832" Type="Data" />
+    <Input Name="e_int_in" x="880" y="512" Type="Event" />
+    <Output Name="INITO" x="2040" y="392" Type="Event" />
+    <Output Name="e_bool_out" x="2040" y="452" Type="Event" />
+    <Output Name="Out_Bool" x="2060" y="832" Type="Data" />
+    <Output Name="Out_Int" x="2060" y="892" Type="Data" />
+    <Output Name="e_int_out" x="2040" y="512" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="IThis.INIT" />
+      <Connection Source="e_bool_in" Destination="IThis.e_bool_in" />
+      <Connection Source="e_int_in" Destination="IThis.e_int_in" />
+      <Connection Source="IThis.e_bool_out" Destination="e_bool_out" />
+      <Connection Source="IThis.e_int_out" Destination="e_int_out" />
+      <Connection Source="IThis.INITO" Destination="INITO" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="In_bool" Destination="IThis.hello" />
+      <Connection Source="In_Int" Destination="IThis.hello_int" />
+      <Connection Source="IThis.out" Destination="Out_Bool" />
+      <Connection Source="IThis.out_int" Destination="Out_Int" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

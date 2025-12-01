@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="40414dd9-36ae-45da-aa20-cc2657d5f7d8" Name="CAT_Jacks_HMI" Comment="Service Interface Function Block Type" Namespace="Main">
+  <Attribute Name="Runtime.Persistence.Storage" Value="0" />
+  <Attribute Name="HMI.Alias" Value="" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Pranay Jhunjhunwala" Date="15/09/2021" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event ID="756F4E7F78DED1EA" Name="INIT">
+        <With Var="QI" />
+      </Event>
+      <Event ID="821E4BFE008A3A21" Name="E_Extend">
+        <With Var="C_EXTEND" />
+      </Event>
+      <Event ID="11ECEBC6F4F40B62" Name="E_Down">
+        <With Var="C_DOWN" />
+      </Event>
+      <Event ID="7C1175996E29465B" Name="E_Vac">
+        <With Var="C_VAC" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event ID="94AA141A3BA632EF" Name="INITO">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration ID="29866017EB4658B6" Name="QI" Type="BOOL" />
+      <VarDeclaration ID="7FA1A9EE9729B982" Name="C_EXTEND" Type="BOOL" />
+      <VarDeclaration ID="528FCE09179CFC3C" Name="C_DOWN" Type="BOOL" />
+      <VarDeclaration ID="5B93840E32D0D8A" Name="C_VAC" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration ID="86E25DA78F314786" Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration ID="4A0F4242B55809FD" Name="STATUS" Type="STRING" Comment="Service Status" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="" LeftInterface="">
+    <ServiceSequence Name="" />
+  </Service>
+</FBType>

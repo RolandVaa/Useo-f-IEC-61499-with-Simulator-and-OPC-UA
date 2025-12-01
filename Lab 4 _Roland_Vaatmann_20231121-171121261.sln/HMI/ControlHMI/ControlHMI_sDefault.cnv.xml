@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping>
+  <EventInputs>
+    <Event Name="E_ProcessStatus">ProcessStatus</Event>
+  </EventInputs>
+  <EventOutputs>
+    <Event Name="E_S">START</Event>
+    <Event Name="E_R">RESET</Event>
+  </EventOutputs>
+  <Inputs>
+    <Input Name="ProcessStatus" Type="STRING" />
+  </Inputs>
+  <Outputs>
+    <Output Name="START" Type="BOOL" />
+    <Output Name="RESET" Type="BOOL" />
+  </Outputs>
+</Mapping>

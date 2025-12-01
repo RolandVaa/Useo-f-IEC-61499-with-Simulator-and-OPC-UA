@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="0be55d9b-be31-4c61-9d6a-b58f1f8f2231" Name="Product_Recipe" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="4/22/2020" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="E_Start" Comment="Initialization Request">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+        <With Var="Start" />
+      </Event>
+      <Event Name="E_Reset">
+        <With Var="Reset" />
+      </Event>
+      <Event Name="E_OpConfirmation">
+        <With Var="OPConfirmation" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="DONE" />
+      <Event Name="Reset_All" />
+      <Event Name="DataOut">
+        <With Var="CurrentState" />
+      </Event>
+      <Event Name="E_Progress">
+        <With Var="Progress" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="OPConfirmation" Type="STRING[60]" />
+      <VarDeclaration Name="Start" Type="BOOL" />
+      <VarDeclaration Name="Reset" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="CurrentState" Type="STRING[60]" />
+      <VarDeclaration Name="Progress" Type="STRING[60]" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="J1P,Robotino,C1_C2,C2C3,C3C6,C6C3,J1R,J2P,C6C4,C4_C6,J2R,C1C3" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="2115.513" y="495.5551" />
+      <ECState Name="Robotino" x="2740" y="780.0001">
+        <ECAction Algorithm="Robotino" Output="DataOut" />
+      </ECState>
+      <ECState Name="J1P" x="2492" y="2084">
+        <ECAction Algorithm="J1P" Output="DataOut" />
+      </ECState>
+      <ECState Name="C3_C6" x="1996" y="2464">
+        <ECAction Algorithm="C3C6" Output="DataOut" />
+      </ECState>
+      <ECState Name="C1_C3" x="2896" y="1176">
+        <ECAction Algorithm="C1C3" Output="DataOut" />
+      </ECState>
+      <ECState Name="J2R" x="1488" y="2864">
+        <ECAction Algorithm="J2R" Output="DataOut" />
+      </ECState>
+      <ECState Name="C6_C3" x="1052" y="2524">
+        <ECAction Algorithm="C6C3" Output="DataOut" />
+      </ECState>
+      <ECState Name="C3_C6_2" x="500" y="2254.667">
+        <ECAction Algorithm="C3C6" Output="DataOut" />
+      </ECState>
+      <ECState Name="J2P" x="336.0001" y="1827.333">
+        <ECAction Algorithm="J2P" Output="DataOut" />
+      </ECState>
+      <ECState Name="C6_C3_2" x="621.3333" y="1342">
+        <ECAction Algorithm="C6C3" Output="DataOut" />
+      </ECState>
+      <ECState Name="J1R" x="818" y="973.3334">
+        <ECAction Algorithm="J1R" Output="DataOut" />
+      </ECState>
+      <ECState Name="C3_C6_3" x="1460.667" y="632.0002">
+        <ECAction Algorithm="C3C6" Output="DataOut" />
+      </ECState>
+      <ECState Name="Reset" x="1730" y="1576.849">
+        <ECAction Output="Reset_All" />
+      </ECState>
+      <ECTransition Source="START" Destination="Robotino" Condition="E_Start" x="2501.075" y="583.1072">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="610.1788,133.692,645.7873,151.7256" />
+      </ECTransition>
+      <ECTransition Source="J1P" Destination="C3_C6" Condition="E_OpConfirmation AND OPConfirmation = 'PLACE_D' AND NOT Reset" x="2323.158" y="2316.492">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="597.9459,570.4573,568.6138,593.7863" />
+      </ECTransition>
+      <ECTransition Source="Robotino" Destination="C1_C3" Condition="E_OpConfirmation AND OPConfirmation = 'R_DONE'" x="2897.767" y="950.5106">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="722.9733,223.1854,732.5472,247.4883" />
+      </ECTransition>
+      <ECTransition Source="C3_C6" Destination="J2R" Condition="E_OpConfirmation AND OPConfirmation = 'C6_DONE' AND NOT Reset" x="1779.908" y="2727.633">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="460.3668,675.1105,431.3748,697.2844" />
+      </ECTransition>
+      <ECTransition Source="J2R" Destination="C6_C3" Condition="E_OpConfirmation AND OPConfirmation = 'REMOVE_D' AND NOT Reset" x="1289.747" y="2781.441">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="337.4146,709.4915,314.446,692.8292" />
+      </ECTransition>
+      <ECTransition Source="C6_C3" Destination="C3_C6_2" Condition="E_OpConfirmation AND OPConfirmation = 'C3_DONE' AND NOT Reset" x="872.4644" y="2461.715">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="241.7759,628.1129,213.3312,613.9879" />
+      </ECTransition>
+      <ECTransition Source="C3_C6_2" Destination="J2P" Condition="E_OpConfirmation AND OPConfirmation = 'C6_DONE' AND NOT Reset" x="449.8185" y="2127.797">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="120.3261,552.637,110.0234,525.728" />
+      </ECTransition>
+      <ECTransition Source="J2P" Destination="C6_C3_2" Condition="E_OpConfirmation AND OPConfirmation = 'PLACE_D' AND NOT Reset" x="575.2419" y="1365.039">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="137.7115,347.8733,162.5859,306.7383" />
+      </ECTransition>
+      <ECTransition Source="C6_C3_2" Destination="J1R" Condition="E_OpConfirmation AND OPConfirmation = 'C3_DONE' AND NOT Reset" x="659.6166" y="1109.175">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="159.3661,281.0443,167.5794,265.4609" />
+      </ECTransition>
+      <ECTransition Source="J1R" Destination="C3_C6_3" Condition="E_OpConfirmation AND OPConfirmation = 'REMOVE_D' AND NOT Reset" x="1169.046" y="859.0405">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="274.171,227.8153,312.3379,208.3978" />
+      </ECTransition>
+      <ECTransition Source="C1_C3" Destination="J1P" Condition="E_OpConfirmation AND OPConfirmation = 'C3_DONE' AND NOT Reset" x="2767.058" y="1660.488">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="711.2396,384.178,681.4426,451.1476" />
+      </ECTransition>
+      <ECTransition Source="C3_C6_2" Destination="Reset" Condition="Reset" x="1109.431" y="1838.766">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="235.391,477.8334,322.1089,430.0457" />
+      </ECTransition>
+      <ECTransition Source="C6_C3" Destination="Reset" Condition="Reset" x="1387.919" y="1975.425">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="322.6128,522.7222,372.8871,452.4901" />
+      </ECTransition>
+      <ECTransition Source="J2P" Destination="Reset" Condition="Reset" x="1021.144" y="1624.222">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="205.5199,409.9977,305.0522,392.113" />
+      </ECTransition>
+      <ECTransition Source="C6_C3_2" Destination="Reset" Condition="Reset" x="1213.153" y="1382.69">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="269.337,334.0947,339.5512,348.9682" />
+      </ECTransition>
+      <ECTransition Source="J1R" Destination="Reset" Condition="Reset" x="1320.624" y="1209.943">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="300.8677,277.1265,363.7252,318.7224" />
+      </ECTransition>
+      <ECTransition Source="C3_C6_3" Destination="Reset" Condition="Reset" x="1671.57" y="1083.865">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="412.8929,234.2327,432.8582,304.273" />
+      </ECTransition>
+      <ECTransition Source="J2R" Destination="Reset" Condition="Reset" x="1608.421" y="2145.425">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="392.9842,579.3889,411.5157,480.8234" />
+      </ECTransition>
+      <ECTransition Source="C3_C6" Destination="Reset" Condition="Reset" x="1861.609" y="2095.425">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="475.5294,562.7222,455.9705,497.4901" />
+      </ECTransition>
+      <ECTransition Source="J1P" Destination="Reset" Condition="Reset" x="2106.385" y="1908.555">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="552.9662,499.3889,502.5337,465.8234" />
+      </ECTransition>
+      <ECTransition Source="C1_C3" Destination="Reset" Condition="Reset" x="2335.628" y="1454.031">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="623.451,355.003,545.9969,381.6302" />
+      </ECTransition>
+      <ECTransition Source="Reset" Destination="START" Condition="1" x="1921.433" y="961.2023">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="466.1764,274.756,495.2018,193.3452" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="Robotino">
+      <ST Text="&#xD;&#xA;CurrentState :='R_START';" />
+    </Algorithm>
+    <Algorithm Name="C1_C2">
+      <ST Text="CurrentState := 'C1_to_C2';" />
+    </Algorithm>
+    <Algorithm Name="J1P">
+      <ST Text="CurrentState := 'J1P';" />
+    </Algorithm>
+    <Algorithm Name="C2C3">
+      <ST Text="CurrentState := 'C2_to_C3';" />
+    </Algorithm>
+    <Algorithm Name="C3C6">
+      <ST Text="CurrentState := 'C3_to_C6';" />
+    </Algorithm>
+    <Algorithm Name="C6C3">
+      <ST Text="CurrentState := 'C6_to_C3';" />
+    </Algorithm>
+    <Algorithm Name="J1R">
+      <ST Text="CurrentState := 'J1R';" />
+    </Algorithm>
+    <Algorithm Name="J2P">
+      <ST Text="CurrentState := 'J2P';" />
+    </Algorithm>
+    <Algorithm Name="C6C4">
+      <ST Text="CurrentState := 'C6_to_C4';" />
+    </Algorithm>
+    <Algorithm Name="C4_C6">
+      <ST Text="CurrentState := 'C4_to_C6';" />
+    </Algorithm>
+    <Algorithm Name="J2R">
+      <ST Text="CurrentState := 'J2R';" />
+    </Algorithm>
+    <Algorithm Name="C1C3">
+      <ST Text="CurrentState := 'C1_to_C3';" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

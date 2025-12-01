@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="d4375405-c950-439b-be2b-404f72da4ce5" Name="CAT1_HMI" Comment="Service Interface Function Block Type" Namespace="Main">
+  <Attribute Name="Runtime.Persistence.Storage" Value="0" />
+  <Attribute Name="HMI.Alias" Value="" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Pranay Jhunjhunwala" Date="22/06/2021" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event ID="D896BCEA81DEB0AA" Name="INIT">
+        <With Var="QI" />
+      </Event>
+      <Event ID="698BBF31F71D22AC" Name="e_bool_in">
+        <With Var="hello" />
+      </Event>
+      <Event ID="6B53CEE1EA3EA5B8" Name="e_int_in">
+        <With Var="hello_int" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event ID="CD7C42354992EF0" Name="INITO">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event ID="14FC10596B9C30E0" Name="e_bool_out">
+        <With Var="out" />
+      </Event>
+      <Event ID="B557BDBD49FF07FE" Name="e_int_out">
+        <With Var="out_int" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration ID="431480DC837E8143" Name="QI" Type="BOOL" />
+      <VarDeclaration ID="65DEEC3D87B9126B" Name="hello" Type="BOOL" />
+      <VarDeclaration ID="440AD628603ED38B" Name="hello_int" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration ID="582B8D80D83F8870" Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration ID="A379391D0A6F8E60" Name="STATUS" Type="STRING" Comment="Service Status" />
+      <VarDeclaration ID="FE7C9188AAFEC88C" Name="out" Type="BOOL" />
+      <VarDeclaration ID="29F2EA830D91CB3" Name="out_int" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="" LeftInterface="">
+    <ServiceSequence Name="" />
+  </Service>
+</FBType>

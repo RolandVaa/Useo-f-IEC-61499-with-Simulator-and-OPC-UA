@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="afec3fb7-83af-47fa-9a74-cad84ecaf1e3" Name="CAT_Conveyor_HMI" Comment="Service Interface Function Block Type" Namespace="Main">
+  <Attribute Name="Runtime.Persistence.Storage" Value="0" />
+  <Attribute Name="HMI.Alias" Value="" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmBH" Version="0.0" Author="prana" Date="16/08/2021" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event ID="CC139A0CA82F4CCE" Name="INIT">
+        <With Var="QI" />
+      </Event>
+      <Event ID="5AADE977440EFE3B" Name="REQ">
+        <With Var="C_Drive" />
+        <With Var="C_Drive_Cur" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event ID="AFBDF4C241384953" Name="INITO">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event ID="233D433D49FB6733" Name="CNF">
+        <With Var="C_Sensor" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration ID="4A9DC9C1769BB028" Name="QI" Type="BOOL" />
+      <VarDeclaration ID="479BB411AF33AB2" Name="C_Drive" Type="BOOL" />
+      <VarDeclaration ID="C1568341FFDDEB0A" Name="C_Drive_Cur" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration ID="DD4FC7B6670798D1" Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration ID="E7BB4703963A6F7F" Name="STATUS" Type="STRING" Comment="Service Status" />
+      <VarDeclaration ID="AA9AF46E38DE4015" Name="C_Sensor" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="" LeftInterface="">
+    <ServiceSequence Name="" />
+  </Service>
+</FBType>

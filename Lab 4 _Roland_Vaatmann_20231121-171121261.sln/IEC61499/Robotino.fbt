@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="6259b983-c2a4-4c97-beb0-cbcc9ddad634" Name="Robotino" Comment="Basic Function Block Type" Namespace="Main">
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Pranay Jhunjhunwala" Date="18/10/2022" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="DockingBool" />
+        <With Var="IP" />
+      </Event>
+      <Event Name="Doc" Comment="Normal Execution Request">
+        <With Var="DockingBool" />
+      </Event>
+      <Event Name="E_IP">
+        <With Var="IP" />
+      </Event>
+      <Event Name="E_Cnv1">
+        <With Var="CNV1" />
+      </Event>
+      <Event Name="E_SenRobo">
+        <With Var="SensorRobotino" />
+      </Event>
+      <Event Name="Reset" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="DockToEnAS" />
+        <With Var="RunConveyor" />
+        <With Var="MakeNewCup" />
+      </Event>
+      <Event Name="E_Dock" Comment="Execution Confirmation">
+        <With Var="DockToEnAS" />
+      </Event>
+      <Event Name="E_RunConv">
+        <With Var="RunConveyor" />
+      </Event>
+      <Event Name="E_NewCup">
+        <With Var="MakeNewCup" />
+      </Event>
+      <Event Name="E_OP">
+        <With Var="OpConfirmation" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="DockingBool" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="IP" Type="STRING" />
+      <VarDeclaration Name="CNV1" Type="BOOL" />
+      <VarDeclaration Name="SensorRobotino" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="DockToEnAS" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="RunConveyor" Type="BOOL" />
+      <VarDeclaration Name="MakeNewCup" Type="BOOL" />
+      <VarDeclaration Name="OpConfirmation" Type="STRING[60]" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,MakeNewCup,Dock,RunConv,UnDock,OpConf" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1104.941" y="773.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="591.5294" y="293.1764">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="NewCup" x="1940" y="1132">
+        <ECAction Algorithm="MakeNewCup" Output="E_NewCup" />
+      </ECState>
+      <ECState Name="Dock" x="2168" y="1824">
+        <ECAction Algorithm="Dock" Output="E_Dock" />
+      </ECState>
+      <ECState Name="Runconveyor" x="2340" y="2780">
+        <ECAction Algorithm="RunConv" Output="E_RunConv" />
+      </ECState>
+      <ECState Name="Undock" x="344" y="1860">
+        <ECAction Algorithm="UnDock" Output="E_Dock" />
+        <ECAction Output="E_RunConv" />
+        <ECAction Output="E_NewCup" />
+      </ECState>
+      <ECState Name="STATE1" x="916" y="3340">
+        <ECAction Algorithm="OpConf" Output="E_OP" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="836.7209" y="608.294">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="228.802,173.9848,195.3156,142.6622" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="907.853" y="476.6711">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="212.3935,99.4045,245.88,130.7271" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="NewCup" Condition="E_IP" x="1560.275" y="879.3014">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="365.8145,204.6122,415.1496,225.7975" />
+      </ECTransition>
+      <ECTransition Source="NewCup" Destination="Dock" Condition="1" x="2131.031" y="1453.957">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="529.2198,336.9893,545.1559,385.9821" />
+      </ECTransition>
+      <ECTransition Source="Dock" Destination="Runconveyor" Condition="Doc &amp; DockingBool&#xD;&#xA;" x="2326.209" y="2316.728">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="580.5732,544.0292,592.3052,616.7896" />
+      </ECTransition>
+      <ECTransition Source="STATE1" Destination="Undock" Condition="E_Cnv1 &amp; CNV1" x="430.5625" y="2724.01">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="118.4003,746.4772,69.81895,636.1958" />
+      </ECTransition>
+      <ECTransition Source="Undock" Destination="START" Condition="1" x="475.5754" y="1176.087">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="75.01917,323.5531,132.3884,241.7818" />
+      </ECTransition>
+      <ECTransition Source="NewCup" Destination="Undock" Condition="Reset" x="1179.855" y="1566.184">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="352.8418,370.7607,238.9084,422.7303" />
+      </ECTransition>
+      <ECTransition Source="Dock" Destination="Undock" Condition="Reset" x="1272.311" y="1921.224">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="384.4022,484.1155,251.9998,486.7284" />
+      </ECTransition>
+      <ECTransition Source="Runconveyor" Destination="Undock" Condition="Reset" x="1410.394" y="2417.909">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="437.3908,647.0872,284.8707,578.1856" />
+      </ECTransition>
+      <ECTransition Source="Runconveyor" Destination="STATE1" Condition="E_SenRobo &amp; SensorRobotino" x="1459.625" y="2821.116">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="409.3287,669.0054,306.2991,708.2024" />
+      </ECTransition>
+      <ECTransition Source="STATE1" Destination="Undock" Condition="Reset" x="870.4903" y="2645.399">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="257.4986,722.4347,212.9049,607.8311" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="MakeNewCup" Comment="Normally executed algorithm">
+      <ST Text="&#xD;&#xA;&#xD;&#xA;MakeNewCup := TRUE;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="Dock">
+      <ST Text="&#xD;&#xA;&#xD;&#xA;DockToEnAS := TRUE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="RunConv">
+      <ST Text="&#xD;&#xA;RunConveyor := TRUE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="UnDock">
+      <ST Text="&#xD;&#xA;DockToEnAS := FALSE;&#xD;&#xA;RunConveyor := FALSE;&#xD;&#xA;MakeNewCup := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="OpConf">
+      <ST Text="&#xD;&#xA;OpConfirmation := 'R_DONE';&#xD;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

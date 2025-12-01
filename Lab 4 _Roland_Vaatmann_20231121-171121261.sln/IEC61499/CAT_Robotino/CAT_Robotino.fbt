@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="5be6fb06-0706-459a-a9a7-600a9bce0c7b" Name="CAT_Robotino" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="HMI.Alias" Value="" />
+  <Attribute Name="Configuration.FB.IDCounter" Value="2" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Pranay Jhunjhunwala" Date="26/10/2022" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+    </EventOutputs>
+    <Sockets>
+      <AdapterDeclaration Name="RS" Type="Adapter_Handshake" Namespace="Main" x="940" y="800" />
+    </Sockets>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="Robotino" x="2400" y="680" Namespace="Main" />
+    <FB ID="2" Name="IThis" Type="CAT_Robotino_HMI" x="4140" y="680" Namespace="Main">
+      <Parameter Name="QI" Value="TRUE" />
+    </FB>
+    <Input Name="INIT" x="2000" y="692" Type="Event" />
+    <Output Name="INITO" x="5060" y="632" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB1.INIT" />
+      <Connection Source="RS.Reset_O" Destination="FB1.Reset" dx1="60" />
+      <Connection Source="RS.E_Data3" Destination="FB1.E_IP" />
+      <Connection Source="FB1.E_OP" Destination="RS.E_Data1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB1.INITO" Destination="IThis.INIT" />
+      <Connection Source="FB1.E_Dock" Destination="IThis.E_Dock" />
+      <Connection Source="FB1.E_RunConv" Destination="IThis.E_RunConv" />
+      <Connection Source="FB1.E_NewCup" Destination="IThis.E_NewCup" />
+      <Connection Source="IThis.INITO" Destination="INITO" dx1="135.8125" />
+      <Connection Source="IThis.Doc" Destination="FB1.Doc">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="IThis.E_Cnv1" Destination="FB1.E_Cnv1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="IThis.E_SenRobo" Destination="FB1.E_SenRobo">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="RS.Data3" Destination="FB1.IP" dx1="40" />
+      <Connection Source="FB1.OpConfirmation" Destination="RS.Data1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB1.DockToEnAS" Destination="IThis.DockToEnas" dx1="150" />
+      <Connection Source="FB1.RunConveyor" Destination="IThis.RunConveyor" dx1="170" />
+      <Connection Source="FB1.MakeNewCup" Destination="IThis.MakeNewCup" dx1="190" />
+      <Connection Source="IThis.DockingBool" Destination="FB1.DockingBool">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="IThis.CNV1" Destination="FB1.CNV1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="IThis.SensorRobotino" Destination="FB1.SensorRobotino">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+    </DataConnections>
+  </FBNetwork>
+</FBType>

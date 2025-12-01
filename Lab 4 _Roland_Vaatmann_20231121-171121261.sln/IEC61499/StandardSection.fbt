@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="9e69b7c7-80d4-4801-b74f-d4a14bac0df5" Name="StandardSection" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="11" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/24/2018" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+      <Event Name="DRIVE_ON" Comment="Set Event" />
+      <Event Name="DRIVE_OFF" Comment="Reset Event" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="E_SENSOR" Comment="Event Output">
+        <With Var="SENSOR" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="SENSOR" Type="BOOL" Comment="Current value(i) in the named variable array element" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="3" UID="1" Name="FB1" Type="SYMLINKMULTIVARSRC_1559B0FF8170C9BA0" x="4260" y="220" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=1;VALUE${I}:BOOL" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="NAME1" Value="'$${PATH}DRIVE'" />
+    </FB>
+    <FB ID="4" UID="2" Name="FB2" Type="SYMLINKMULTIVARDST_1559B0FF8170C9BA0" x="540" y="220" Namespace="Main">
+      <Attribute Name="Configuration.GenericFBType.InterfaceParams" Value="Runtime.System#I:=1;VALUE${I}:BOOL" />
+      <Parameter Name="QI" Value="TRUE" />
+      <Parameter Name="NAME1" Value="'$${PATH}SENSOR'" />
+    </FB>
+    <FB ID="5" Name="FB3" Type="E_SR" x="3440" y="280" Namespace="IEC61499.Standard" />
+    <Input Name="INIT" x="40" y="232" Type="Event" />
+    <Input Name="DRIVE_ON" x="2840" y="292" Type="Event" />
+    <Input Name="DRIVE_OFF" x="2840" y="352" Type="Event" />
+    <Output Name="SENSOR" x="1383.302" y="611.8542" Type="Data" />
+    <Output Name="INITO" x="4900" y="232" Type="Event" />
+    <Output Name="E_SENSOR" x="1400" y="292" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB2.INIT" />
+      <Connection Source="FB1.INITO" Destination="INITO" />
+      <Connection Source="FB2.INITO" Destination="FB1.INIT" />
+      <Connection Source="DRIVE_ON" Destination="FB3.S" />
+      <Connection Source="DRIVE_OFF" Destination="FB3.R" />
+      <Connection Source="FB3.EO" Destination="FB1.REQ" />
+      <Connection Source="FB2.CNF" Destination="E_SENSOR" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB3.Q" Destination="FB1.VALUE1" dx1="48.35425" />
+      <Connection Source="FB2.VALUE1" Destination="SENSOR" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="02162272-8040-41e3-8c9f-b1d38d558ca8" Name="Conveyor_SL_1_Adp" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="22" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="4/23/2020" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="ConveyorNumber" />
+      </Event>
+      <Event Name="E_Sensor">
+        <With Var="SENSOR" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="CNF">
+        <With Var="DRIVE" />
+      </Event>
+      <Event Name="E_State">
+        <With Var="State" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ConveyorNumber" Type="STRING" />
+      <VarDeclaration Name="SENSOR" Type="BOOL" Comment="Current value(i) in the named variable array element" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="DRIVE" Type="BOOL" />
+      <VarDeclaration Name="State" Type="STRING[60]" />
+    </OutputVars>
+    <Sockets>
+      <AdapterDeclaration Name="Input" Type="HandshakeAdapter_Proposal" Namespace="Main" x="740" y="2100" />
+      <AdapterDeclaration Name="CommandIp" Type="HandshakeAdapter_Proposal" Namespace="Main" x="740" y="3500" />
+    </Sockets>
+    <Plugs>
+      <AdapterDeclaration Name="Output" Type="HandshakeAdapter_Proposal" Namespace="Main" x="5960" y="2260" />
+    </Plugs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="3" Name="FB2" Type="StandardSection" x="4400" y="1840" Namespace="Main" />
+    <FB ID="5" Name="FB3" Type="E_MERGE" x="6220" y="1020" Namespace="IEC61499.Standard" />
+    <FB ID="6" Name="FB1" Type="ConveyorAdvanced" x="2960" y="1840" Namespace="Main" />
+    <FB ID="7" Name="FB4" Type="OP_Select_Str" x="1940" y="700" Namespace="Main" />
+    <FB ID="8" Name="FB5" Type="OP_Select_Str" x="4340" y="3400" Namespace="Main" />
+    <FB ID="22" Name="FB6" Type="E_SPLIT" x="1940" y="3640" Namespace="IEC61499.Standard" />
+    <Input Name="INIT" x="4020" y="1852" Type="Event" />
+    <Input Name="ConveyorNumber" x="2120" y="2772" Type="Data" />
+    <Input Name="SENSOR" x="2000" y="3492" Type="Data" />
+    <Input Name="E_Sensor" x="12" y="72" Type="Event" />
+    <Output Name="State" x="4218.417" y="2712" Type="Data" />
+    <Output Name="E_State" x="4320.188" y="2472" Type="Event" />
+    <Output Name="DRIVE" x="3900" y="2372" Type="Data" />
+    <Output Name="CNF" x="6960" y="1032" Type="Event" />
+    <Output Name="INITO" x="5200" y="692" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB2.INIT" />
+      <Connection Source="FB1.DRIVE_ON" Destination="FB2.DRIVE_ON">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.DRIVE_OFF" Destination="FB2.DRIVE_OFF">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="E_Sensor" Destination="FB1.E_SensorCurrent" dx1="1286.406">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB3.EO" Destination="CNF" />
+      <Connection Source="FB1.DRIVE_ON" Destination="FB3.EI1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB1.DRIVE_OFF" Destination="FB3.EI1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB4.E_OP" Destination="FB1.E_Command" dx1="483.6042">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="CommandIp.E_Data1" Destination="FB4.Block1" dx1="52.521" />
+      <Connection Source="FB1.DONE" Destination="FB5.Block1" dx1="168.0625">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.E_CommandOut" Destination="Output.E_Data1" dx1="180" />
+      <Connection Source="E_Sensor" Destination="Output.E_Data2" dx1="2786.406">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Input.E_Data1" Destination="FB4.Block2" dx1="122.521">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Input.E_Data2" Destination="FB1.E_PrevSensor" dx1="791.2604">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Output.E_Data5" Destination="FB1.E_NextSensor">
+        <Points>
+          <Points>
+            <X>1644.36975</X>
+            <Y>590</Y>
+          </Points>
+          <Points>
+            <X>1654.36975</X>
+            <Y>590</Y>
+          </Points>
+          <Points>
+            <X>1654.36975</X>
+            <Y>547.5</Y>
+          </Points>
+          <Points>
+            <X>1472.5</X>
+            <Y>547.5</Y>
+          </Points>
+          <Points>
+            <X>1472.5</X>
+            <Y>442.5</Y>
+          </Points>
+          <Points>
+            <X>725</X>
+            <Y>442.5</Y>
+          </Points>
+          <Points>
+            <X>725</X>
+            <Y>515</Y>
+          </Points>
+          <Points>
+            <X>735</X>
+            <Y>515</Y>
+          </Points>
+        </Points>
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Output.E_Data4" Destination="FB5.Block2" dx1="100" dx2="70" dy="980">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB5.E_OP" Destination="CommandIp.E_Data4" dx1="60" dx2="80" dy="-110">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="E_Sensor" Destination="Input.E_Data5" dx1="176.4063">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB2.INITO" Destination="INITO" dx1="58.5625" />
+      <Connection Source="FB1.E_State" Destination="E_State" dx1="120" />
+      <Connection Source="CommandIp.E_Data3" Destination="FB6.EI" dx1="60" />
+      <Connection Source="FB6.EO1" Destination="FB1.Reset" dx1="514.3125">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB6.EO2" Destination="Output.E_Data3" dx1="3554.313">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="SENSOR" Destination="FB1.CurrentSensor" dx1="300.0625" />
+      <Connection Source="FB1.DRIVE" Destination="DRIVE" dx1="118.0625" />
+      <Connection Source="FB4.Output" Destination="FB1.Command" dx1="283.6042">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="ConveyorNumber" Destination="FB1.ConveyorNumber" />
+      <Connection Source="CommandIp.Data1" Destination="FB4.Data1" dx1="182.521">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.OpConfirmation" Destination="FB5.Data1" dx1="68.0625">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.CommandOut" Destination="Output.Data1">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="SENSOR" Destination="Output.Data2" dx1="1645.031">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Input.Data1" Destination="FB4.Data2" dx1="242.521">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Output.Data5" Destination="FB1.NextSensor" dx1="40" dx2="860" dy="300">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Output.Data4" Destination="FB5.Data2" dx1="142.5215" dx2="90" dy="1580">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB5.Output" Destination="CommandIp.Data4" dx1="40" dx2="220" dy="580">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="SENSOR" Destination="Input.Data5" dx1="40.0625" dx2="30" dy="-90" />
+      <Connection Source="Input.Data2" Destination="FB1.PrevSensor" dx1="40" />
+      <Connection Source="FB1.State" Destination="State" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

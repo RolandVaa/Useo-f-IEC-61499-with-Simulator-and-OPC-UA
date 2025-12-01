@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="780381c3-9a81-498c-bd9a-0de8e200ae9c" Name="DeliveryOrganisation" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="11/25/2020" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="CommandIn" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request">
+        <With Var="CommandIn" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="CommandOut" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation">
+        <With Var="CommandOut" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="CommandIn" Type="STRING[60]" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="CommandOut" Type="STRING[60]" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,REQ,DS,Reset" />
+    <InternalVars>
+      <VarDeclaration Name="i" Type="INT" />
+      <VarDeclaration Name="j" Type="INT" />
+      <VarDeclaration Name="m" Type="INT" />
+      <VarDeclaration Name="n" Type="INT" />
+      <VarDeclaration Name="t1" Type="INT" />
+      <VarDeclaration Name="t2" Type="INT" />
+      <VarDeclaration Name="Command" Type="STRING[60]" />
+      <VarDeclaration Name="m_str" Type="STRING" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="820.9412" y="601.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="283.5294" y="157.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="1637.647" y="972.9412">
+        <ECAction Algorithm="DS" Output="CNF" />
+      </ECState>
+      <ECState Name="STATE1" x="652" y="1132">
+        <ECAction Algorithm="Reset" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="541.0073" y="453.8159">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="155.1426,133.3181,120.9751,105.3289" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="607.8953" y="318.8318">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="136.8554,61.39326,171.1185,89.71581" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="1274.7" y="717.3101">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="294.4486,163.4719,344.6329,186.3014" />
+      </ECTransition>
+      <ECTransition Source="REQ" Destination="STATE1" Condition="1" x="1233.969" y="1350.451">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="342.3673,353.2305,285.465,362.9614" />
+      </ECTransition>
+      <ECTransition Source="STATE1" Destination="REQ" Condition="REQ" x="1080.289" y="886.8391">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="235.5209,216.4439,297.4453,206.4509" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text="IF CommandIn = ('C3_to_C5') THEN&#xD;&#xA;	CommandOut := ('C3,P4,D5');&#xD;&#xA;ELSIF CommandIn = ('C5_to_C1') THEN&#xD;&#xA;	CommandOut := ('C5,P6,D1');&#xD;&#xA;ELSIF CommandIn = ('C1_to_C3') THEN&#xD;&#xA;	CommandOut := ('C1,P2,D3');&#xD;&#xA;ELSE&#xD;&#xA;	CommandOut := CommandIn;&#xD;&#xA;END_IF;&#xD;&#xA;		" />
+    </Algorithm>
+    <Algorithm Name="DS">
+      <ST Text="&#xD;&#xA;&#xD;&#xA;i := STRING_TO_INT((RIGHT((LEFT(CommandIn,2)),1)));&#xD;&#xA;j := STRING_TO_INT((RIGHT(CommandIn,1)));&#xD;&#xA;&#xD;&#xA;m := i + 1;&#xD;&#xA;n := j-1;&#xD;&#xA;t1 := m;&#xD;&#xA;&#xD;&#xA;IF j &lt; i THEN&#xD;&#xA;	&#xD;&#xA;	FOR t1 := m TO 6 BY 1 DO&#xD;&#xA;		m_str := INT_TO_STRING(m);&#xD;&#xA;		Command := CONCAT(Command,'P',m_str,',');&#xD;&#xA;		m := m + 1;&#xD;&#xA;	END_FOR;&#xD;&#xA;	&#xD;&#xA;	t1 := 0;&#xD;&#xA;	&#xD;&#xA;	FOR t1 := 1 TO n BY 1 DO&#xD;&#xA;		m_str := INT_TO_STRING(t1);&#xD;&#xA;		Command := CONCAT(Command,'P',m_str,',');&#xD;&#xA;	END_FOR;&#xD;&#xA;	&#xD;&#xA;	CommandOut := CONCAT('C',INT_TO_STRING(i),',',Command,'D',INT_TO_STRING(j));&#xD;&#xA;	&#xD;&#xA;	&#xD;&#xA;ELSE&#xD;&#xA;	FOR t1 := m TO n BY 1 DO&#xD;&#xA;		m_str := INT_TO_STRING(t1);&#xD;&#xA;		Command := CONCAT(Command,'P',m_str,',');&#xD;&#xA;	END_FOR;&#xD;&#xA;	CommandOut := CONCAT('C',INT_TO_STRING(i),',',Command,'D',INT_TO_STRING(j));&#xD;&#xA;	&#xD;&#xA;END_IF;&#xD;&#xA;	&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="Reset">
+      <ST Text="&#xD;&#xA;&#xD;&#xA;i := 0;&#xD;&#xA;j := 0;&#xD;&#xA;m := 0;&#xD;&#xA;n := 0;&#xD;&#xA;Command := '';&#xD;&#xA;t1 := 0;&#xD;&#xA;m_str := '';&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

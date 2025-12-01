@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DeviceProperties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DefaultProfile>
+    <Device Name="DEV">
+      <ComplexProperty Name="Configuration" Expanded="true">
+        <GroupProperty Name="Communication" Expanded="true" Enabled="true">
+          <GroupProperty Name="OPCUA" Expanded="true" Enabled="true" />
+        </GroupProperty>
+      </ComplexProperty>
+      <GroupProperty Name="OPCUASettings" Expanded="true" Enabled="true">
+        <GroupProperty Name="session" Expanded="true" Enabled="true" />
+        <GroupProperty Name="endpoint" Expanded="true" Enabled="true">
+          <Property Name="endpoints/0/bind_port" Value="48040" IsPassword="false" />
+        </GroupProperty>
+      </GroupProperty>
+    </Device>
+  </DefaultProfile>
+  <Profile Name="(Local Test)">
+    <Device Name="DEV">
+      <ComplexProperty Name="Ports" Expanded="true">
+        <Property Name="Deploy" Value="51500" IsPassword="false" />
+        <Property Name="Archive" Value="51497" IsPassword="false" />
+      </ComplexProperty>
+      <ComplexProperty Name="Configuration" Expanded="true">
+        <GroupProperty Name="Communication" Expanded="true" Enabled="true">
+          <ComplexProperty Name="Endpoint" Expanded="true">
+            <ComplexProperty Name="WebSocket" Expanded="true">
+              <Property Name="Encryption" Value="False" IsPassword="false" />
+              <Property Name="URI" Value="ws://0.0.0.0:51499,ws://[::]:51499,wss://0.0.0.0:51443,wss://[::]:51443" IsPassword="false" />
+            </ComplexProperty>
+          </ComplexProperty>
+          <GroupProperty Name="OPCUA" Expanded="true" Enabled="true" />
+        </GroupProperty>
+      </ComplexProperty>
+      <GroupProperty Name="OPCUASettings" Expanded="true" Enabled="true">
+        <GroupProperty Name="endpoint" Expanded="true" Enabled="true">
+          <Property Name="security" Value="Non Secured" IsPassword="false" />
+          <Property Name="securityconfiguration" Value="33|security_policies/size = 1|security_policies/0/policy_id = http://opcfoundation.org/UA/SecurityPolicy#None|security_policies/0/store = 0|security_policies/0/mode_sign = false|security_policies/0/mode_sign_and_encrypt = false|security_policies/0/mode_none = true|security_policies/0/max_chain_length = 0|security_policies/0/certificate = -1|security_policies/0/ign_time = false|security_policies/0/ign_issuer_time = false|security_policies/0/ign_miss_crl = false|security_policies/0/ign_miss_issuer_crl = false|security_policies/0/ign_untrusted = false|security_policies/0/check_complete_chain = true|security_policies/0/disable_crl_check = false|security_policies/0/disable_cert_validate = true|security_policies/0/max_verify_results = 0|security_policies/0/ign_key_usage = false|security_policies/0/ign_ext_key_usage = false|user_tokens/size = 1|user_tokens/0/name  = Anonymous_None_Token|user_tokens/0/type = Anonymous|user_tokens/0/policy_id = http://opcfoundation.org/UA/SecurityPolicy#None|endpoints/size = 1|endpoints/0/security_policies = 0|endpoints/0/user_tokens = 0" IsPassword="false" />
+        </GroupProperty>
+      </GroupProperty>
+    </Device>
+  </Profile>
+</DeviceProperties>

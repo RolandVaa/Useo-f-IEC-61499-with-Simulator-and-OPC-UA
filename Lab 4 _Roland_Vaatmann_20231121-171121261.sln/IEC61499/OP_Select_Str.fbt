@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="2c376cd2-c3b3-4578-9a18-bb78a25807cc" Name="OP_Select_Str" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="4/16/2020" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="Block1" Comment="Initialization Request">
+        <With Var="Data1" />
+      </Event>
+      <Event Name="Block2" Comment="Normal Execution Request">
+        <With Var="Data2" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="E_OP" Comment="Initialization Confirm">
+        <With Var="Output" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Data1" Type="STRING[60]" Comment="Input event qualifier" />
+      <VarDeclaration Name="Data2" Type="STRING[60]" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Output" Type="STRING[60]" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="OP1,OP2" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1404.941" y="1653.412" />
+      <ECState Name="OP1" Comment="Initialization" x="2439.53" y="1249.177">
+        <ECAction Algorithm="OP1" Output="E_OP" />
+      </ECState>
+      <ECState Name="OP2" Comment="Normal execution" x="2381.647" y="2572.941">
+        <ECAction Algorithm="OP2" Output="E_OP" />
+      </ECState>
+      <ECTransition Source="START" Destination="OP1" Condition="Block1" x="1869.111" y="1234.143">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="431.4349,306.9706,498.9346,280.5323" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="OP2" Condition="Block2" x="1718.849" y="2293.922">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="382.8283,553.512,454.4884,620.5063" />
+      </ECTransition>
+      <ECTransition Source="OP2" Destination="OP1" Condition="Block1" x="2747.548" y="1940.673">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="708.7609,536.467,713.0115,438.8053" />
+      </ECTransition>
+      <ECTransition Source="OP1" Destination="OP2" Condition="Block2" x="2164.616" y="1882.335">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="525.9094,417.3819,521.4661,518.9985" />
+      </ECTransition>
+      <ECTransition Source="OP1" Destination="OP1" Condition="Block1" x="2503.777" y="939.7487">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="705,238,554,189" />
+      </ECTransition>
+      <ECTransition Source="OP2" Destination="OP2" Condition="Block2" x="2381.647" y="2755.027" />
+    </ECC>
+    <Algorithm Name="OP1" Comment="Initialization algorithm">
+      <ST Text="Output := Data1 ;&#xD;&#xA;Block1 := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="OP2">
+      <ST Text="Output := Data2;&#xD;&#xA;Block2 := FALSE;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

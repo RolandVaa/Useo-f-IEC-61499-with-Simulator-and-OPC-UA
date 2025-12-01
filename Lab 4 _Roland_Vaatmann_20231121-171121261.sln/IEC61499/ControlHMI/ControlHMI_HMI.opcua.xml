@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OPCUAObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OPCUAVariable UID="1750A62BC31D3D64" Enabled="false">
+    <OPCUAAttribute Name="AccessLevel" Value="1" Locked="true" AttributeMask="Read Only;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath}</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+  <OPCUAVariable UID="28C0DBD8D6884314" Enabled="false">
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath};Trigger=E_S</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+  <OPCUAVariable UID="D02BA33AAC300A47" Enabled="false">
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath};Trigger=E_R</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+</OPCUAObject>

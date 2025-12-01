@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="200d45b8-76be-4fc1-aaae-e94fa143d3de" Name="JackPlaceWP" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="dmidro" Date="9/26/2018" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="TRIGGER" Comment="Normal Execution Request" />
+      <Event Name="RESET" />
+      <Event Name="E_Delay_Done" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="DONE" Comment="Initialization Confirm" />
+      <Event Name="E_Status">
+        <With Var="Status" />
+      </Event>
+      <Event Name="E_VAC_ON">
+        <With Var="VAC_ON" />
+      </Event>
+      <Event Name="E_EXTEND">
+        <With Var="EXTEND" />
+      </Event>
+      <Event Name="E_DOWN">
+        <With Var="DOWN" />
+      </Event>
+      <Event Name="E_Delay_Start" />
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="EXTEND" Type="BOOL" />
+      <VarDeclaration Name="DOWN" Type="BOOL" />
+      <VarDeclaration Name="VAC_ON" Type="BOOL" />
+      <VarDeclaration Name="Status" Type="STRING" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="Down,Vac_ON,UP,Extend,Vac_OFF,Retract,StatusStarted,StatusDone" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="1625.386" y="491.19" />
+      <ECState Name="GO_AHEAD" x="5304" y="1845.334">
+        <ECAction Algorithm="Extend" Output="E_EXTEND" />
+        <ECAction Output="E_Delay_Start" />
+      </ECState>
+      <ECState Name="GO_DOWN" x="4516.444" y="2905.778">
+        <ECAction Algorithm="Down" Output="E_DOWN" />
+        <ECAction Output="E_Delay_Start" />
+      </ECState>
+      <ECState Name="GRAB" x="3164" y="3833.333">
+        <ECAction Algorithm="Vac_OFF" Output="E_VAC_ON" />
+        <ECAction Output="E_Delay_Start" />
+      </ECState>
+      <ECState Name="GO_UP" x="1418.222" y="3837.778">
+        <ECAction Algorithm="UP" Output="E_DOWN" />
+        <ECAction Output="E_Delay_Start" />
+      </ECState>
+      <ECState Name="RETRACT" x="697.3333" y="2493.778">
+        <ECAction Algorithm="Retract" Output="E_EXTEND" />
+        <ECAction Output="E_Delay_Start" />
+      </ECState>
+      <ECState Name="RESET" x="2407.556" y="1902.667">
+        <ECAction Algorithm="Vac_OFF" Output="E_VAC_ON" />
+        <ECAction Algorithm="UP" Output="E_DOWN" />
+        <ECAction Algorithm="Retract" Output="E_EXTEND" />
+      </ECState>
+      <ECState Name="WAIT" x="788.4444" y="1086.667">
+        <ECAction Output="DONE" />
+        <ECAction Algorithm="StatusDone" Output="E_Status" />
+      </ECState>
+      <ECState Name="STATE1" x="2697.777" y="142.2223">
+        <ECAction Algorithm="Down" Output="E_DOWN" />
+        <ECAction Output="E_Delay_Start" />
+      </ECState>
+      <ECState Name="STATE2" x="4306.667" y="204.4444">
+        <ECAction Algorithm="Vac_ON" Output="E_VAC_ON" />
+        <ECAction Output="E_Delay_Start" />
+      </ECState>
+      <ECState Name="STATE3" x="5391.111" y="697.7778">
+        <ECAction Algorithm="UP" Output="E_DOWN" />
+        <ECAction Output="E_Delay_Start" />
+      </ECState>
+      <ECTransition Source="START" Destination="STATE1" Condition="TRIGGER" x="2110.228" y="326.6906">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="495.8485,92.04465,551.8194,72.94563" />
+      </ECTransition>
+      <ECTransition Source="GO_AHEAD" Destination="GO_DOWN" Condition="E_Delay_Done" x="4902.807" y="2405.195">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1254.279,564.7407,1195.752,642.7966" />
+      </ECTransition>
+      <ECTransition Source="GO_DOWN" Destination="GRAB" Condition="E_Delay_Done" x="3769.774" y="3423.828">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="991.1016,824.5143,881.926,896.4449" />
+      </ECTransition>
+      <ECTransition Source="GRAB" Destination="GO_UP" Condition="E_Delay_Done" x="2223.019" y="3605.449">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="607.837,886.8846,493.8713,885.6345" />
+      </ECTransition>
+      <ECTransition Source="GO_UP" Destination="RETRACT" Condition="E_Delay_Done" x="924.9645" y="3291.253">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="244.0805,871.2757,200.9879,795.2635" />
+      </ECTransition>
+      <ECTransition Source="RETRACT" Destination="WAIT" Condition="E_Delay_Done" x="740.5796" y="1749.576">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="182.6855,488.9724,187.3448,379.0412" />
+      </ECTransition>
+      <ECTransition Source="WAIT" Destination="START" Condition="1" x="1247.374" y="759.954">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="286.9083,208.0662,343.5487,167.0817" />
+      </ECTransition>
+      <ECTransition Source="GO_AHEAD" Destination="RESET" Condition="RESET" x="3914.846" y="1882.97">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1084.281,469.4641,887.9175,473.2501" />
+      </ECTransition>
+      <ECTransition Source="GO_DOWN" Destination="RESET" Condition="RESET" x="3353.887" y="2633.804">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="910.8735,712.3431,759.0961,639.4572" />
+      </ECTransition>
+      <ECTransition Source="GRAB" Destination="RESET" Condition="RESET" x="2680.218" y="3022.699">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="692.0749,842.2574,633.5392,694.875" />
+      </ECTransition>
+      <ECTransition Source="GO_UP" Destination="RESET" Condition="RESET" x="1832.788" y="2995.847">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="412.6993,835.8104,490.5941,683.0503" />
+      </ECTransition>
+      <ECTransition Source="RETRACT" Destination="RESET" Condition="RESET" x="1687.405" y="2140.375">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="372.6466,551.2762,492.3341,510.0458" />
+      </ECTransition>
+      <ECTransition Source="RESET" Destination="START" Condition="1" x="2026.63" y="1246.878">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="537.5928,368.9982,477.8616,262.7658" />
+      </ECTransition>
+      <ECTransition Source="STATE1" Destination="STATE2" Condition="E_Delay_Done" x="3446.18" y="349.45">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="808.8855,97.01495,907.2493,99.32825" />
+      </ECTransition>
+      <ECTransition Source="STATE2" Destination="STATE3" Condition="E_Delay_Done" x="4760.526" y="420.0438">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1147.755,86.21497,1219.007,118.629" />
+      </ECTransition>
+      <ECTransition Source="STATE1" Destination="RESET" Condition="RESET" x="2628.857" y="1034.644">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="674.2094,190.6743,651.458,328.681" />
+      </ECTransition>
+      <ECTransition Source="STATE2" Destination="RESET" Condition="RESET" x="3410.515" y="1109.463">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="930.2092,215.614,781.6757,348.4355" />
+      </ECTransition>
+      <ECTransition Source="STATE3" Destination="GO_AHEAD" Condition="E_Delay_Done" x="5425.613" y="1277.233">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1365.117,276.3149,1358.518,363.2476" />
+      </ECTransition>
+      <ECTransition Source="STATE3" Destination="RESET" Condition="RESET" x="3931.033" y="1371.322">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1097.742,302.3814,870.6479,394.0918" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="Down">
+      <ST Text="DOWN := TRUE;&#xD;&#xA;E_Delay_Done := FALSE;&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="Vac_ON">
+      <ST Text="VAC_ON := TRUE;&#xD;&#xA;E_Delay_Done := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="UP">
+      <ST Text="DOWN := FALSE;&#xD;&#xA;E_Delay_Done := FALSE;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="Extend">
+      <ST Text="EXTEND := TRUE ;&#xD;&#xA;E_Delay_Done := FALSE;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="Vac_OFF">
+      <ST Text="VAC_ON := FALSE ;&#xD;&#xA;E_Delay_Done := FALSE;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="Retract">
+      <ST Text="EXTEND := FALSE ;&#xD;&#xA;E_Delay_Done := FALSE;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="StatusStarted">
+      <ST Text="Status := 'S';&#xD;&#xA;E_Delay_Done := FALSE;" />
+    </Algorithm>
+    <Algorithm Name="StatusDone">
+      <ST Text="Status := 'PLACE_D';&#xD;&#xA;E_Delay_Done := FALSE;&#xD;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

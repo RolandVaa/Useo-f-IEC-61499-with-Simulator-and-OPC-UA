@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="d0dac514-5de6-4051-a69f-24e2ec864fbd" Name="Pneumatics" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="1" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="2/14/2021" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+    </EventOutputs>
+    <AdapterInputs>
+      <Adapter Name="Input" Type="HandshakeAdapter_Proposal" Namespace="Main" />
+    </AdapterInputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="Jack_Sledge_Place" x="1660" y="240" Namespace="Main" />
+    <Input Name="INIT" x="980" y="252" Type="Event" />
+    <Input Name="Input" x="540" y="632" Type="Adapter" />
+    <Output Name="INITO" x="2400" y="272" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB1.INIT" />
+      <Connection Source="FB1.INITO" Destination="INITO" dx1="40" />
+    </EventConnections>
+    <AdapterConnections>
+      <Connection Source="Input" Destination="FB1.Input" />
+    </AdapterConnections>
+  </FBNetwork>
+</FBType>

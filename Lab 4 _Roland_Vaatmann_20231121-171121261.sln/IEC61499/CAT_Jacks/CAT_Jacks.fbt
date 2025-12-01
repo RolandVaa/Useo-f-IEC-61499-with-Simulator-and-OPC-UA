@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="2619cfd1-ea69-4469-af36-dfc28bc1da77" Name="CAT_Jacks" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="2" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Pranay Jhunjhunwala" Date="15/09/2021" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+    </EventOutputs>
+    <AdapterInputs>
+      <Adapter Name="Input" Type="HandshakeAdapter_Proposal" Namespace="Main" />
+    </AdapterInputs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="Jack_Sledge_Place" x="1780" y="900" Namespace="Main" />
+    <FB ID="2" Name="IThis" Type="CAT_Jacks_HMI" x="2800" y="900" Namespace="Main">
+      <Parameter Name="QI" Value="TRUE" />
+    </FB>
+    <Input Name="INIT" x="1340" y="912" Type="Event" />
+    <Input Name="Input" x="545.9271" y="1292" Type="Adapter" />
+    <Output Name="INITO" x="4120" y="712" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="FB1.INIT" />
+      <Connection Source="FB1.INITO" Destination="IThis.INIT" />
+      <Connection Source="FB1.E_EXTEND" Destination="IThis.E_Extend" />
+      <Connection Source="FB1.E_DOWN" Destination="IThis.E_Down" />
+      <Connection Source="FB1.E_VAC_ON" Destination="IThis.E_Vac" />
+      <Connection Source="IThis.INITO" Destination="INITO" dx1="40" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB1.Extend" Destination="IThis.C_EXTEND" dx1="208">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.Down" Destination="IThis.C_DOWN" dx1="188">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.Vac" Destination="IThis.C_VAC" dx1="148">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </DataConnections>
+    <AdapterConnections>
+      <Connection Source="Input" Destination="FB1.Input" />
+    </AdapterConnections>
+  </FBNetwork>
+</FBType>

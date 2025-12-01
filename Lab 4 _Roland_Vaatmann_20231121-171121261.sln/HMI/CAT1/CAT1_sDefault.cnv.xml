@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping>
+  <EventInputs>
+    <Event Name="e_bool_in">hello</Event>
+    <Event Name="e_int_in">hello_int</Event>
+  </EventInputs>
+  <EventOutputs>
+    <Event Name="e_bool_out">out</Event>
+    <Event Name="e_int_out">out_int</Event>
+  </EventOutputs>
+  <Inputs>
+    <Input Name="hello" Type="BOOL" />
+    <Input Name="hello_int" Type="INT" />
+  </Inputs>
+  <Outputs>
+    <Output Name="out" Type="BOOL" />
+    <Output Name="out_int" Type="INT" />
+  </Outputs>
+</Mapping>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="3a2a04de-5ee1-4f45-a757-bbd01806cca3" Name="Organization" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="8" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Pranay Jhunjhunwala" Date="15/09/2021" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+    </EventOutputs>
+    <Sockets>
+      <AdapterDeclaration Name="Input" Type="Adapter_Handshake" Namespace="Main" x="940" y="900" />
+    </Sockets>
+    <Plugs>
+      <AdapterDeclaration Name="DS" Type="Adapter_Handshake" Namespace="Main" x="4100" y="880" />
+      <AdapterDeclaration Name="PS" Type="Adapter_Handshake" Namespace="Main" x="4100" y="1460" />
+      <AdapterDeclaration Name="RS" Type="Adapter_Handshake" Namespace="Main" x="4140" y="2140" />
+    </Plugs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="FB1" Type="Organization_Services" x="1940" y="820" Namespace="Main" />
+    <FB ID="5" Name="FB2" Type="E_SPLIT" x="3440" y="1000" Namespace="IEC61499.Standard" />
+    <FB ID="6" Name="FB3" Type="OP_Select_Str" x="6240" y="880" Namespace="Main" />
+    <FB ID="7" Name="FB4" Type="E_SPLIT" x="3580" y="1860" Namespace="IEC61499.Standard" />
+    <FB ID="8" Name="FB5" Type="OP_Select_Str" x="5340" y="1460" Namespace="Main" />
+    <Input Name="INIT" x="1460" y="832" Type="Event" />
+    <Output Name="INITO" x="2920" y="832" Type="Event" />
+    <EventConnections>
+      <Connection Source="Input.Reset_O" Destination="FB1.Reset_In" dx1="75.95837" />
+      <Connection Source="Input.E_Data3" Destination="FB1.Data_In" dx1="55.95837" />
+      <Connection Source="INIT" Destination="FB1.INIT" />
+      <Connection Source="FB1.INITO" Destination="INITO" />
+      <Connection Source="FB1.Reset_Out" Destination="FB2.EI">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB1.E_PS" Destination="PS.E_Data3" dx1="692.4167">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.E_DS" Destination="DS.E_Data3" />
+      <Connection Source="FB2.EO1" Destination="DS.Reset_O" />
+      <Connection Source="FB2.EO2" Destination="FB4.EI">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="DS.E_Data1" Destination="FB3.Block1" />
+      <Connection Source="PS.E_Data1" Destination="FB5.Block1">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB3.E_OP" Destination="Input.E_Data1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB1.E_RS" Destination="RS.E_Data3" dx1="92.41675">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.EO1" Destination="PS.Reset_O" dx1="50" />
+      <Connection Source="FB4.EO2" Destination="RS.Reset_O" dx1="44.3125" />
+      <Connection Source="RS.E_Data1" Destination="FB5.Block2" dx1="45.9585">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB5.E_OP" Destination="FB3.Block2" dx1="103.604">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Input.Data3" Destination="FB1.CurrentState" dx1="40" />
+      <Connection Source="FB1.DeliveryServices" Destination="DS.Data3">
+        <Points>
+          <Points>
+            <X>671.8958</X>
+            <Y>325</Y>
+          </Points>
+          <Points>
+            <X>820</X>
+            <Y>325</Y>
+          </Points>
+          <Points>
+            <X>820</X>
+            <Y>332.5</Y>
+          </Points>
+          <Points>
+            <X>937.5</X>
+            <Y>332.5</Y>
+          </Points>
+          <Points>
+            <X>937.5</X>
+            <Y>310</Y>
+          </Points>
+          <Points>
+            <X>1020</X>
+            <Y>310</Y>
+          </Points>
+        </Points>
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB1.PlacementServices" Destination="PS.Data3" dx1="612.4167">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="DS.Data1" Destination="FB3.Data1" dx1="75.9585" />
+      <Connection Source="PS.Data1" Destination="FB5.Data1" dx1="272.979">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB3.Output" Destination="Input.Data1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB1.RobotServices" Destination="RS.Data3" dx1="42.41675" />
+      <Connection Source="RS.Data1" Destination="FB5.Data2" dx1="605.9585">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB5.Output" Destination="FB3.Data2" dx1="243.604">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </DataConnections>
+  </FBNetwork>
+</FBType>

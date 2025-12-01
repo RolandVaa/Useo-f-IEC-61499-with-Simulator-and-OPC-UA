@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="d6afb1fe-3aa4-43c4-ac25-b7a20c643881" Name="ProductionServices" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="10" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="11/2/2020" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+    </EventOutputs>
+    <Sockets>
+      <AdapterDeclaration Name="HMI_Input" Type="Adapter_hmi" Namespace="Main" x="1000" y="980" />
+    </Sockets>
+    <Plugs>
+      <AdapterDeclaration Name="Production_Command" Type="Adapter_Handshake" Namespace="Main" x="3960" y="1040" />
+    </Plugs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="6" Name="FB4" Type="Product_Recipe" x="2060" y="980" Namespace="Main" />
+    <Input Name="INIT" x="1680" y="232" Type="Event" />
+    <Output Name="INITO" x="2880" y="232" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="INITO" />
+      <Connection Source="FB4.Reset_All" Destination="Production_Command.Reset_O" dx1="806.8123">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.DataOut" Destination="Production_Command.E_Data3" dx1="946.8123">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="Production_Command.E_Data1" Destination="FB4.E_OpConfirmation" dx1="60" dx2="90" dy="-170" />
+      <Connection Source="HMI_Input.E_R" Destination="FB4.E_Reset" />
+      <Connection Source="FB4.E_Progress" Destination="HMI_Input.E_P" dx1="96.81226" dx2="30" dy="-360">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="HMI_Input.E_S" Destination="FB4.E_Start" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB4.CurrentState" Destination="Production_Command.Data3" dx1="130" />
+      <Connection Source="Production_Command.Data1" Destination="FB4.OPConfirmation" dx1="75.9585" dx2="80" dy="280">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB4.Progress" Destination="HMI_Input.PROCESS" dx1="86.81226" dx2="80" dy="440">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="HMI_Input.START" Destination="FB4.Start" dx1="109.1042">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="HMI_Input.RESET" Destination="FB4.Reset" dx1="69.10425">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </DataConnections>
+  </FBNetwork>
+</FBType>

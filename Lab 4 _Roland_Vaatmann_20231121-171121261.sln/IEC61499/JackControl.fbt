@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="5b64b201-c218-4986-8174-e6c6ffc6f622" Name="JackControl" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="18" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="4/16/2020" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="Name" />
+        <With Var="ServerAddress" />
+      </Event>
+      <Event Name="Trigger_Place" />
+      <Event Name="Trigger_Remove" />
+      <Event Name="TOP">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+        <With Var="Top" />
+        <With Var="Bottom" />
+      </Event>
+      <Event Name="BOTTOM">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+        <With Var="Bottom" />
+        <With Var="Top" />
+      </Event>
+      <Event Name="EXTENDED">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+        <With Var="Extended" />
+        <With Var="Retracted" />
+      </Event>
+      <Event Name="RETRACTED">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+        <With Var="Retracted" />
+        <With Var="Extended" />
+      </Event>
+      <Event Name="Reset" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="Place_Done" />
+      <Event Name="E_EXTEND">
+        <With Var="Extend" />
+      </Event>
+      <Event Name="E_DOWN">
+        <With Var="Down" />
+      </Event>
+      <Event Name="E_VAC">
+        <With Var="Vac" />
+      </Event>
+      <Event Name="Remove_Done" />
+      <Event Name="E_OperationStatus" Comment="Execution Confirmation">
+        <With Var="OperationStatus" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="Top" Type="BOOL">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+        <Attribute Name="Runtime.OPCUA.WriteTrigger" Value="TOP" />
+      </VarDeclaration>
+      <VarDeclaration Name="Bottom" Type="BOOL">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+        <Attribute Name="Runtime.OPCUA.WriteTrigger" Value="BOTTOM" />
+      </VarDeclaration>
+      <VarDeclaration Name="Extended" Type="BOOL">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+        <Attribute Name="Runtime.OPCUA.WriteTrigger" Value="EXTENDED" />
+      </VarDeclaration>
+      <VarDeclaration Name="Retracted" Type="BOOL">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+        <Attribute Name="Runtime.OPCUA.WriteTrigger" Value="RETRACTED" />
+      </VarDeclaration>
+      <VarDeclaration Name="Name" Type="STRING" />
+      <VarDeclaration Name="ServerAddress" Type="STRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Extend" Type="BOOL">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+      </VarDeclaration>
+      <VarDeclaration Name="Down" Type="BOOL">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+      </VarDeclaration>
+      <VarDeclaration Name="Vac" Type="BOOL">
+        <Attribute Name="Runtime.OPCUA.Access" Value="2" />
+      </VarDeclaration>
+      <VarDeclaration Name="OperationStatus" Type="STRING" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="1" Name="PlaceWP" Type="JackPlaceWP" x="1700" y="140" Namespace="Main" />
+    <FB ID="2" Name="RemoveWP" Type="JackRemoveWP" x="1700" y="1120" Namespace="Main" />
+    <FB ID="7" Name="FB7" Type="E_SPLIT" x="460" y="1780" Namespace="IEC61499.Standard" />
+    <FB ID="11" Name="FB8" Type="OP_Selection" x="5820" y="300" Namespace="Main" />
+    <FB ID="12" Name="FB9" Type="OP_Selection" x="5860" y="920" Namespace="Main" />
+    <FB ID="13" Name="FB10" Type="OP_Selection" x="5860" y="1560" Namespace="Main" />
+    <FB ID="17" Name="FB1" Type="E_MERGE" x="4380" y="1700" Namespace="IEC61499.Standard" />
+    <FB ID="18" Name="FB2" Type="OperationStatus" x="3860" y="740" Namespace="Main" />
+    <Input Name="Trigger_Place" x="760" y="152" Type="Event" />
+    <Input Name="Trigger_Remove" x="780" y="1132" Type="Event" />
+    <Input Name="Reset" x="80" y="1792" Type="Event" />
+    <Input Name="Extended" x="380" y="712" Type="Data" />
+    <Input Name="Retracted" x="380" y="772" Type="Data" />
+    <Input Name="Top" x="380" y="832" Type="Data" />
+    <Input Name="Bottom" x="380" y="892" Type="Data" />
+    <Input Name="EXTENDED" x="500" y="332" Type="Event" />
+    <Input Name="RETRACTED" x="500" y="392" Type="Event" />
+    <Input Name="TOP" x="500" y="212" Type="Event" />
+    <Input Name="BOTTOM" x="500" y="272" Type="Event" />
+    <Input Name="INIT" x="1215.708" y="2112" Type="Event" />
+    <Input Name="Name" x="946.9063" y="2612" Type="Data" />
+    <Input Name="ServerAddress" x="822.7188" y="2672" Type="Data" />
+    <Output Name="OperationStatus" x="4709.999" y="1071.563" Type="Data" />
+    <Output Name="E_OperationStatus" x="4712.156" y="811.8542" Type="Event" />
+    <Output Name="Remove_Done" x="2680" y="1132" Type="Event" />
+    <Output Name="Extend" x="6300" y="692" Type="Data" />
+    <Output Name="E_EXTEND" x="6320" y="312" Type="Event" />
+    <Output Name="E_DOWN" x="6340" y="932" Type="Event" />
+    <Output Name="E_VAC" x="6360" y="1572" Type="Event" />
+    <Output Name="Down" x="6360" y="1312" Type="Data" />
+    <Output Name="Vac" x="6400" y="1952" Type="Data" />
+    <Output Name="Place_Done" x="2660" y="152" Type="Event" />
+    <EventConnections>
+      <Connection Source="Trigger_Place" Destination="PlaceWP.TRIGGER" />
+      <Connection Source="Trigger_Remove" Destination="RemoveWP.TRIGGER" />
+      <Connection Source="Reset" Destination="FB7.EI" />
+      <Connection Source="FB7.EO1" Destination="PlaceWP.RESET" dx1="834.3125">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB7.EO2" Destination="RemoveWP.RESET" dx1="914.3125">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="FB8.CNF_OP" Destination="E_EXTEND" />
+      <Connection Source="FB9.CNF_OP" Destination="E_DOWN" />
+      <Connection Source="FB10.CNF_OP" Destination="E_VAC" />
+      <Connection Source="RemoveWP.E_VAC_ON" Destination="FB10.E3">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="PlaceWP.E_VAC_ON" Destination="FB10.E1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="RemoveWP.E_DOWN" Destination="FB9.E3">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="PlaceWP.E_DOWN" Destination="FB9.E1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="PlaceWP.E_EXTEND" Destination="FB8.E2">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="RemoveWP.E_EXTEND" Destination="FB8.E3">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="PlaceWP.DONE" Destination="Place_Done" />
+      <Connection Source="RemoveWP.DONE" Destination="Remove_Done">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="PlaceWP.E_Status" Destination="FB2.E_PlaceStatus" dx1="40" />
+      <Connection Source="RemoveWP.E_Status" Destination="FB2.E_RemoveStatus" dx1="195.771" />
+      <Connection Source="FB2.CNF" Destination="E_OperationStatus" dx1="40" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FB8.OP" Destination="Extend" />
+      <Connection Source="FB9.OP" Destination="Down" />
+      <Connection Source="FB10.OP" Destination="Vac" />
+      <Connection Source="RemoveWP.VAC_ON" Destination="FB10.IP2">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="PlaceWP.VAC_ON" Destination="FB10.IP1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="RemoveWP.DOWN" Destination="FB9.IP2">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="PlaceWP.DOWN" Destination="FB9.IP1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="RemoveWP.EXTEND" Destination="FB8.IP2">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="PlaceWP.EXTEND" Destination="FB8.IP1">
+        <Attribute Name="Configuration.Connections.CrossReference" Value="True" />
+      </Connection>
+      <Connection Source="FB2.Operation" Destination="OperationStatus" dx1="70.54199" />
+      <Connection Source="PlaceWP.Status" Destination="FB2.PlaceStatus" dx1="825.771">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="RemoveWP.Status" Destination="FB2.RemoveStatus" dx1="795.771" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

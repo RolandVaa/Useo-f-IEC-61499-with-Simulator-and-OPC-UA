@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OPCUAObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OPCUAVariable UID="FEE37A938D864B72" Enabled="false">
+    <OPCUAAttribute Name="AccessLevel" Value="1" Locked="true" AttributeMask="Read Only;True" />
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath}</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+  <OPCUAVariable UID="C99DB4546908931A" Enabled="false">
+    <OPCUAAttribute Name="AccessLevel" Value="1" Locked="true" AttributeMask="Read Only;True" />
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath}</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+  <OPCUAVariable UID="8B47961C26FD1D0F" Enabled="false">
+    <OPCUAAttribute Name="AccessLevel" Value="1" Locked="true" AttributeMask="Read Only;True" />
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath}</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+  <OPCUAVariable UID="726993A1F15C56B" Enabled="false">
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath};Trigger=Doc</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+  <OPCUAVariable UID="4EEC88A0C348825C" Enabled="false">
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath};Trigger=E_Cnv1</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+  <OPCUAVariable UID="7D610B6A5B9F33B0" Enabled="false">
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath};Trigger=E_SenRobo</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+</OPCUAObject>

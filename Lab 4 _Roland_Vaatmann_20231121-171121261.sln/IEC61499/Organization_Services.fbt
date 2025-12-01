@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="8f26a988-b01f-4e3d-b357-412344bcb119" Name="Organization_Services" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="11/2/2020" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="CurrentState" />
+      </Event>
+      <Event Name="Data_In">
+        <With Var="CurrentState" />
+      </Event>
+      <Event Name="Reset_In" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm">
+        <With Var="DeliveryServices" />
+        <With Var="PlacementServices" />
+        <With Var="RobotServices" />
+      </Event>
+      <Event Name="E_DS">
+        <With Var="DeliveryServices" />
+      </Event>
+      <Event Name="E_PS">
+        <With Var="PlacementServices" />
+      </Event>
+      <Event Name="E_RS">
+        <With Var="RobotServices" />
+      </Event>
+      <Event Name="Reset_Out" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="CurrentState" Type="STRING[60]" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="DeliveryServices" Type="STRING[60]" />
+      <VarDeclaration Name="PlacementServices" Type="STRING[60]" />
+      <VarDeclaration Name="RobotServices" Type="STRING[60]" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,ServiceCheck,DeliveryService,PlaceService,Reset,RobotService" />
+    <InternalVars>
+      <VarDeclaration Name="DS" Type="BOOL" />
+      <VarDeclaration Name="PS" Type="BOOL" />
+      <VarDeclaration Name="check" Type="STRING[60]" />
+      <VarDeclaration Name="RS" Type="BOOL" />
+    </InternalVars>
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="2460.941" y="681.4117" />
+      <ECState Name="INIT" Comment="Initialization" x="2471.529" y="221.1765">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="ServiceCheck" x="2478.667" y="1232">
+        <ECAction Algorithm="ServiceCheck" />
+      </ECState>
+      <ECState Name="DeliveryService" x="1424.667" y="2133.333">
+        <ECAction Algorithm="DeliveryService" Output="E_DS" />
+      </ECState>
+      <ECState Name="PlaceService" x="3480" y="2104">
+        <ECAction Algorithm="PlaceService" Output="E_PS" />
+      </ECState>
+      <ECState Name="Reset" x="2440" y="2876">
+        <ECAction Algorithm="Reset" Output="Reset_Out" />
+      </ECState>
+      <ECState Name="RobotService" x="4228" y="852">
+        <ECAction Algorithm="RobotService" Output="E_RS" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="2241.331" y="441.2629">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="547.8055,124.1896,549.2841,94.76996" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="2657.017" y="453.0959">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="675.0691,98.58038,673.4736,128.2679" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="ServiceCheck" Condition="Data_In" x="2468.15" y="966.1141">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="616.5925,223.6652,617.3139,260.9599" />
+      </ECTransition>
+      <ECTransition Source="ServiceCheck" Destination="DeliveryService" Condition="DS" x="2056.185" y="1703.666">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="558.659,396.3206,482.4671,459.0121" />
+      </ECTransition>
+      <ECTransition Source="ServiceCheck" Destination="PlaceService" Condition="PS" x="2890.252" y="1731.673">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="685.0744,409.9363,751.1057,466.5123" />
+      </ECTransition>
+      <ECTransition Source="DeliveryService" Destination="ServiceCheck" Condition="Data_In" x="1631.434" y="1541.563">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="353.5684,407.6171,426.0884,341.0551" />
+      </ECTransition>
+      <ECTransition Source="PlaceService" Destination="ServiceCheck" Condition="Data_In" x="3167.871" y="1562.171">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="837.5684,415.4041,763.4506,348.0435" />
+      </ECTransition>
+      <ECTransition Source="PlaceService" Destination="Reset" Condition="Reset_In" x="3060.303" y="2595.234">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="806.7653,629.9551,733.4432,683.5262" />
+      </ECTransition>
+      <ECTransition Source="DeliveryService" Destination="Reset" Condition="Reset_In" x="1725.019" y="2569.112">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="382.6846,621.2913,453.2663,672.4224" />
+      </ECTransition>
+      <ECTransition Source="Reset" Destination="ServiceCheck" Condition="Data_In" x="2201.223" y="2085.31">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="529.9189,588.0951,532.8229,459.7779" />
+      </ECTransition>
+      <ECTransition Source="ServiceCheck" Destination="Reset" Condition="Reset_In" x="2708.742" y="2095.037">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="696.9429,463.034,693.9688,591.3237" />
+      </ECTransition>
+      <ECTransition Source="ServiceCheck" Destination="RobotService" Condition="RS" x="3311.528" y="750.0464">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="772.481,179.6631,884.1841,155.3983" />
+      </ECTransition>
+      <ECTransition Source="RobotService" Destination="ServiceCheck" Condition="Data_In" x="3379.592" y="1119.76">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="900.0452,272.6778,788.3421,296.9424" />
+      </ECTransition>
+      <ECTransition Source="RobotService" Destination="Reset" Condition="Reset_In" x="4836.757" y="3001.322">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1399.069,761.4941,1257.752,921.4637" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="Reset" Comment="Normally executed algorithm">
+      <ST Text="&#xD;&#xA;check := '';&#xD;&#xA;&#xD;&#xA;DS := FALSE;&#xD;&#xA;PS := FALSE;&#xD;&#xA;RS := FALSE;&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="ServiceCheck">
+      <ST Text="check := (LEFT(CurrentState,1));&#xD;&#xA;IF check = 'C' THEN&#xD;&#xA;	DS := TRUE;&#xD;&#xA;    PS := FALSE;&#xD;&#xA;    RS := FALSE;&#xD;&#xA;ELSIF check = 'J' THEN&#xD;&#xA;	PS := TRUE;&#xD;&#xA;	DS := FALSE;&#xD;&#xA;	RS := FALSE;&#xD;&#xA;ELSIF check = 'R' THEN&#xD;&#xA;	RS := TRUE;&#xD;&#xA;	DS := FALSE;&#xD;&#xA;	PS := FALSE;&#xD;&#xA;END_IF;" />
+    </Algorithm>
+    <Algorithm Name="DeliveryService">
+      <ST Text="&#xD;&#xA;DeliveryServices := CurrentState;&#xD;&#xA;DS := FALSE;&#xD;&#xA;PS := FALSE;&#xD;&#xA;RS := FALSE;&#xD;&#xA;Data_In := FALSE;&#xD;&#xA;PlacementServices := '';&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="PlaceService">
+      <ST Text="&#xD;&#xA;PlacementServices := CurrentState;&#xD;&#xA;DS := FALSE;&#xD;&#xA;PS := FALSE;&#xD;&#xA;RS := FALSE;&#xD;&#xA;Data_In := FALSE;&#xD;&#xA;DeliveryServices := '';&#xD;&#xA;" />
+    </Algorithm>
+    <Algorithm Name="RobotService">
+      <ST Text="&#xD;&#xA;RobotServices := CurrentState;&#xD;&#xA;&#xD;&#xA;DS := FALSE;&#xD;&#xA;PS := FALSE;&#xD;&#xA;RS := FALSE;&#xD;&#xA;Data_In := FALSE;&#xD;&#xA;DeliveryServices := '';&#xD;&#xA;&#xD;&#xA;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

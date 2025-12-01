@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<baseline xmlns:xsd="http://www.nxtControl.com/Snapshot" xmlns="http://tempuri.org/XMLSchema1.xsd">
+  <snapshot guid="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" compiler="Default" created="2023-11-21T17:05:03" base="{00000000-0000-0000-0000-000000000000}">
+    <DeployInformation Type="Working">
+      <FileGroup Name="FileList" xmlns="http://tempuri.org/DeploySnapshot.xsd">
+        <FileItem Name="Main#Adapter_Handshake.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:24</Modified>
+          <Hash>136016108A2F0845</Hash>
+        </FileItem>
+        <FileItem Name="Main#Adapter_hmi.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:24</Modified>
+          <Hash>114F2677173719069</Hash>
+        </FileItem>
+        <FileItem Name="Main#HandshakeAdapter_Proposal.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:24</Modified>
+          <Hash>73E39233F2E51CC1</Hash>
+        </FileItem>
+        <FileItem Name="Main#CAT1_HMI.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:24</Modified>
+          <Hash>36BF449976831222</Hash>
+        </FileItem>
+        <FileItem Name="Main#CAT1.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:24</Modified>
+          <Hash>0D52213BF00F1FF</Hash>
+        </FileItem>
+        <FileItem Name="Main#CAT_Conveyor_HMI.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:24</Modified>
+          <Hash>116B789EC717232AB</Hash>
+        </FileItem>
+        <FileItem Name="Main#SYMLINKMULTIVARSRC_1559B0FF8170C9BA0.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:24</Modified>
+          <Hash>1559B0FF8170C9BA0</Hash>
+        </FileItem>
+        <FileItem Name="Main#SYMLINKMULTIVARDST_1559B0FF8170C9BA0.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:25</Modified>
+          <Hash>1559B0FF8170C9BA0</Hash>
+        </FileItem>
+        <FileItem Name="Main#StandardSection.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:25</Modified>
+          <Hash>1982DDB2B205B9D31</Hash>
+        </FileItem>
+        <FileItem Name="Main#ConveyorAdvanced.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:25</Modified>
+          <Hash>166BAC0D1D809885</Hash>
+        </FileItem>
+        <FileItem Name="Main#OP_Select_Str.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:25</Modified>
+          <Hash>567FF9D3CB34A2BD</Hash>
+        </FileItem>
+        <FileItem Name="Main#Conveyor_S_Adp.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:25</Modified>
+          <Hash>110B3332703E4B8CD</Hash>
+        </FileItem>
+        <FileItem Name="Main#CAT_Conveyor.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:25</Modified>
+          <Hash>22023EA35E9F26A98</Hash>
+        </FileItem>
+        <FileItem Name="Main#CAT_Conveyor_1_HMI.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:26</Modified>
+          <Hash>10574698147AA4509</Hash>
+        </FileItem>
+        <FileItem Name="Main#Conveyor_SL_1_Adp.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:26</Modified>
+          <Hash>221401465BF5DC31</Hash>
+        </FileItem>
+        <FileItem Name="Main#CAT_Conveyor_1.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:26</Modified>
+          <Hash>21943750A6A54CEB3</Hash>
+        </FileItem>
+        <FileItem Name="Main#JackDecode_New.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:26</Modified>
+          <Hash>130989C6AD7DB085B</Hash>
+        </FileItem>
+        <FileItem Name="Main#JackPlaceWP.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:26</Modified>
+          <Hash>114449C21BABE5D60</Hash>
+        </FileItem>
+        <FileItem Name="Main#JackRemoveWP.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:26</Modified>
+          <Hash>55EA03BD340BE3ED</Hash>
+        </FileItem>
+        <FileItem Name="Main#OP_Select.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:26</Modified>
+          <Hash>2861E67CFA2EEAAF</Hash>
+        </FileItem>
+        <FileItem Name="Main#OP_Selection.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:27</Modified>
+          <Hash>23A1A062475BD2E1</Hash>
+        </FileItem>
+        <FileItem Name="Main#Jack_Sledge_Place.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:27</Modified>
+          <Hash>1038BD2E874E17801</Hash>
+        </FileItem>
+        <FileItem Name="Main#CAT_Jacks_HMI.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:27</Modified>
+          <Hash>80BFCE17C2D998B2</Hash>
+        </FileItem>
+        <FileItem Name="Main#CAT_Jacks.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:27</Modified>
+          <Hash>12A00086ECB4D693</Hash>
+        </FileItem>
+        <FileItem Name="Main#Robotino.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:27</Modified>
+          <Hash>53AB7FEA80623306</Hash>
+        </FileItem>
+        <FileItem Name="Main#CAT_Robotino_HMI.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:27</Modified>
+          <Hash>253FBB271B7BC8800</Hash>
+        </FileItem>
+        <FileItem Name="Main#CAT_Robotino.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:28</Modified>
+          <Hash>53B48CC6AB0D08C5</Hash>
+        </FileItem>
+        <FileItem Name="Main#Composite1.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:28</Modified>
+          <Hash>213B18BE320FD066C</Hash>
+        </FileItem>
+        <FileItem Name="Main#ControlHMI_HMI.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:28</Modified>
+          <Hash>215927AE51263C6C0</Hash>
+        </FileItem>
+        <FileItem Name="Main#ControlHMI.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:28</Modified>
+          <Hash>13387DEE171169018</Hash>
+        </FileItem>
+        <FileItem Name="Main#ConveyorAdvanced_2.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:28</Modified>
+          <Hash>1875BAEAD5CB73982</Hash>
+        </FileItem>
+        <FileItem Name="Main#DeliveryOrganisation.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:28</Modified>
+          <Hash>47CDAB4A7AA772BE</Hash>
+        </FileItem>
+        <FileItem Name="Main#DeliveryServices_Adp.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:28</Modified>
+          <Hash>239EC5CAC4A7C458E</Hash>
+        </FileItem>
+        <FileItem Name="Main#HandShakeMech_Rec.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:29</Modified>
+          <Hash>2357EF02216589A3C</Hash>
+        </FileItem>
+        <FileItem Name="Main#OperationStatus.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:29</Modified>
+          <Hash>40A656FF3B8A5009</Hash>
+        </FileItem>
+        <FileItem Name="Main#JackControl.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:29</Modified>
+          <Hash>20473CC3462F3AFA4</Hash>
+        </FileItem>
+        <FileItem Name="Main#SYMLINKMULTIVARDST_19628BFC3C74F1AB1.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:29</Modified>
+          <Hash>19628BFC3C74F1AB1</Hash>
+        </FileItem>
+        <FileItem Name="Main#SYMLINKMULTIVARSRC_151ACB50A2F8223B2.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:29</Modified>
+          <Hash>151ACB50A2F8223B2</Hash>
+        </FileItem>
+        <FileItem Name="Main#JackHAL_HW.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:29</Modified>
+          <Hash>71764FCDA0581E84</Hash>
+        </FileItem>
+        <FileItem Name="Main#Organization_Services.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:29</Modified>
+          <Hash>121507CD3CEBFB672</Hash>
+        </FileItem>
+        <FileItem Name="Main#Organization.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:30</Modified>
+          <Hash>99F10901E9FE0E92</Hash>
+        </FileItem>
+        <FileItem Name="Main#Place_Services.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:30</Modified>
+          <Hash>125C88A3FAA38F301</Hash>
+        </FileItem>
+        <FileItem Name="Main#PlaceServices.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:30</Modified>
+          <Hash>1733630E46C50081</Hash>
+        </FileItem>
+        <FileItem Name="Main#Pneumatics.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:30</Modified>
+          <Hash>231A7ADB4812D67BE</Hash>
+        </FileItem>
+        <FileItem Name="Main#Product_Recipe.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:47</Modified>
+          <Hash>18534D0A48F44E7D8</Hash>
+        </FileItem>
+        <FileItem Name="Main#ProductionServices.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:48</Modified>
+          <Hash>255F6AF4A2EEBE4C9</Hash>
+        </FileItem>
+        <FileItem Name="Main#SledgeHAL.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:30</Modified>
+          <Hash>164C5D777CFB3CDEF</Hash>
+        </FileItem>
+        <FileItem Name="Main#trial.bin" Library="IEC61499.exe" BuildSnapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" BaseSnapshot="{00000000-0000-0000-0000-000000000000}">
+          <Modified>2023-11-21T17:01:30</Modified>
+          <Hash>21239C5FD732EC468</Hash>
+        </FileItem>
+        <LibraryItem Name="Runtime.Base" Version="22.1.0.17" />
+        <LibraryItem Name="SE.DPAC" Version="22.1.0.24" />
+        <LibraryItem Name="SE.Standard" Version="22.1.0.9" />
+        <LibraryItem Name="Standard.HMIExtensions" Version="22.1.0.5" />
+        <DeviceItem ID="09811e02-766c-40f4-be54-b7275e49af17" Hash="219011BA2A44DD502" />
+      </FileGroup>
+      <Device Name="DEV" ID="09811e02-766c-40f4-be54-b7275e49af17" xmlns="http://tempuri.org/DeploySnapshot.xsd">
+        <FileItem Name="Composites/Main#CAT_Conveyor_1_HMI.bin" />
+        <FileItem Name="Basics/Main#SYMLINKMULTIVARSRC_1559B0FF8170C9BA0.bin" />
+        <FileItem Name="Basics/Main#SYMLINKMULTIVARDST_1559B0FF8170C9BA0.bin" />
+        <FileItem Name="Composites/Main#StandardSection.bin" />
+        <FileItem Name="Basics/Main#ConveyorAdvanced.bin" />
+        <FileItem Name="Basics/Main#OP_Select_Str.bin" />
+        <FileItem Name="Adapters/Main#HandshakeAdapter_Proposal.bin" />
+        <FileItem Name="Composites/Main#Conveyor_SL_1_Adp.bin" />
+        <FileItem Name="Composites/Main#CAT_Conveyor_1.bin" />
+        <FileItem Name="Composites/Main#CAT_Conveyor_HMI.bin" />
+        <FileItem Name="Composites/Main#Conveyor_S_Adp.bin" />
+        <FileItem Name="Composites/Main#CAT_Conveyor.bin" />
+        <FileItem Name="Basics/Main#DeliveryOrganisation.bin" />
+        <FileItem Name="Adapters/Main#Adapter_Handshake.bin" />
+        <FileItem Name="Composites/Main#DeliveryServices_Adp.bin" />
+        <FileItem Name="Basics/Main#Product_Recipe.bin" />
+        <FileItem Name="Adapters/Main#Adapter_hmi.bin" />
+        <FileItem Name="Composites/Main#ProductionServices.bin" />
+        <FileItem Name="Basics/Main#Organization_Services.bin" />
+        <FileItem Name="Composites/Main#Organization.bin" />
+        <FileItem Name="Basics/Main#Place_Services.bin" />
+        <FileItem Name="Composites/Main#PlaceServices.bin" />
+        <FileItem Name="Basics/Main#JackDecode_New.bin" />
+        <FileItem Name="Basics/Main#JackPlaceWP.bin" />
+        <FileItem Name="Basics/Main#JackRemoveWP.bin" />
+        <FileItem Name="Basics/Main#OP_Select.bin" />
+        <FileItem Name="Composites/Main#OP_Selection.bin" />
+        <FileItem Name="Composites/Main#Jack_Sledge_Place.bin" />
+        <FileItem Name="HMIAccessors/Main#CAT_Jacks_HMI.bin" />
+        <FileItem Name="Composites/Main#CAT_Jacks.bin" />
+        <FileItem Name="HMIAccessors/Main#ControlHMI_HMI.bin" />
+        <FileItem Name="Composites/Main#ControlHMI.bin" />
+        <FileItem Name="Basics/Main#Robotino.bin" />
+        <FileItem Name="HMIAccessors/Main#CAT_Robotino_HMI.bin" />
+        <FileItem Name="Composites/Main#CAT_Robotino.bin" />
+      </Device>
+    </DeployInformation>
+  </snapshot>
+  <deployment>
+    <network_profile name="(Local Test)">
+      <device id="09811e02-766c-40f4-be54-b7275e49af17">
+        <sref snapshot="{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" state="ACTIVE" />
+      </device>
+    </network_profile>
+  </deployment>
+</baseline>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="3cd02883-c875-43ec-9ffe-579c206d2619" Name="CAT_Robotino_HMI" Comment="Service Interface Function Block Type" Namespace="Main">
+  <Attribute Name="Runtime.Persistence.Storage" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Pranay Jhunjhunwala" Date="26/10/2022" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event ID="F1C1C54D643A939F" Name="INIT">
+        <With Var="QI" />
+      </Event>
+      <Event ID="CE3F2E79B6DFB9E0" Name="E_Dock">
+        <With Var="DockToEnas" />
+      </Event>
+      <Event ID="D286C17766A1844E" Name="E_RunConv">
+        <With Var="RunConveyor" />
+      </Event>
+      <Event ID="DF4C9289664BAEA4" Name="E_NewCup">
+        <With Var="MakeNewCup" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event ID="26653CA980141092" Name="INITO">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event ID="C63FDEA73339BC79" Name="Doc">
+        <With Var="DockingBool" />
+      </Event>
+      <Event ID="FC0FB8B2659623C6" Name="E_Cnv1">
+        <With Var="CNV1" />
+      </Event>
+      <Event ID="DD6E5DB307108B02" Name="E_SenRobo">
+        <With Var="SensorRobotino" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration ID="53A0E47D952732B2" Name="QI" Type="BOOL" />
+      <VarDeclaration ID="FEE37A938D864B72" Name="DockToEnas" Type="BOOL" />
+      <VarDeclaration ID="C99DB4546908931A" Name="RunConveyor" Type="BOOL" />
+      <VarDeclaration ID="8B47961C26FD1D0F" Name="MakeNewCup" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration ID="600EA11DB23E325" Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration ID="CB7B2EE12C224B89" Name="STATUS" Type="STRING" Comment="Service Status" />
+      <VarDeclaration ID="726993A1F15C56B" Name="DockingBool" Type="BOOL" />
+      <VarDeclaration ID="4EEC88A0C348825C" Name="CNV1" Type="BOOL" />
+      <VarDeclaration ID="7D610B6A5B9F33B0" Name="SensorRobotino" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="" LeftInterface="">
+    <ServiceSequence Name="" />
+  </Service>
+</FBType>

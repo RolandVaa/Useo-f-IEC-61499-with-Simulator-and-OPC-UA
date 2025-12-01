@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="7c4aefdf-d668-475a-b0bb-6e27c06c8735" Name="ControlHMI_HMI" Comment="Service Interface Function Block Type" Namespace="Main">
+  <Attribute Name="Runtime.Persistence.Storage" Value="0" />
+  <Attribute Name="HMI.Alias" Value="" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Pranay Jhunjhunwala" Date="23/09/2021" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event ID="18FD0DB1ED788E9C" Name="INIT">
+        <With Var="QI" />
+      </Event>
+      <Event ID="8C0D9F8C1CBE863E" Name="E_ProcessStatus">
+        <With Var="ProcessStatus" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event ID="98A4286FFB7E1F8A" Name="INITO">
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event ID="9150CAD8D70013E2" Name="E_S">
+        <With Var="START" />
+      </Event>
+      <Event ID="F1FC23A67BB71766" Name="E_R">
+        <With Var="RESET" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration ID="27101784249A3DA6" Name="QI" Type="BOOL" />
+      <VarDeclaration ID="1750A62BC31D3D64" Name="ProcessStatus" Type="STRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration ID="623AF6AF859F8EEE" Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration ID="1CE42FA8E99E440C" Name="STATUS" Type="STRING" Comment="Service Status" />
+      <VarDeclaration ID="28C0DBD8D6884314" Name="START" Type="BOOL" />
+      <VarDeclaration ID="D02BA33AAC300A47" Name="RESET" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="" LeftInterface="">
+    <ServiceSequence Name="" />
+  </Service>
+</FBType>

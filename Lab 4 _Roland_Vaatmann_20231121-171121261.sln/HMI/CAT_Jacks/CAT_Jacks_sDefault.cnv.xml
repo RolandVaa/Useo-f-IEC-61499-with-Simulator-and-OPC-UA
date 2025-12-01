@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping>
+  <EventInputs>
+    <Event Name="E_Extend">C_EXTEND</Event>
+    <Event Name="E_Down">C_DOWN</Event>
+    <Event Name="E_Vac">C_VAC</Event>
+  </EventInputs>
+  <EventOutputs />
+  <Inputs>
+    <Input Name="C_EXTEND" Type="BOOL" />
+    <Input Name="C_DOWN" Type="BOOL" />
+    <Input Name="C_VAC" Type="BOOL" />
+  </Inputs>
+  <Outputs />
+</Mapping>

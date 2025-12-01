@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{7EE16F89-AE58-40FC-BD3C-86DD5B9A7045}</ProjectGuid>
+    <ProjectTypeGuids>{EAD1E85F-CEF5-4861-AFF8-597F2DDE70FC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Windows</Platform>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Main</RootNamespace>
+    <AssemblyName>IEC61499</AssemblyName>
+    <NxtVersion>22.1.0.0</NxtVersion>
+    <CheckConnectionsStrictly>TRUE</CheckConnectionsStrictly>
+    <CreateHMI>false</CreateHMI>
+    <HMIProject>HMI</HMIProject>
+    <CATInstancesHaveIds>true</CATInstancesHaveIds>
+    <ProjectType>IEC61499</ProjectType>
+    <CheckGenericInstances>False</CheckGenericInstances>
+    <ConvertStringValues>False</ConvertStringValues>
+    <HardwareConfigurationMigrationVersion>1</HardwareConfigurationMigrationVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Default\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <IntermediateOutputPath>obj\Default\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Default\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <IntermediateOutputPath>obj\Default\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Windows' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Windows' ">
+    <Version>1.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nxtControl.Standard">
+      <Version>22.0.0.6</Version>
+    </Reference>
+    <Reference Include="Runtime.Base">
+      <Version>22.1.0.17</Version>
+    </Reference>
+    <Reference Include="SE.DPAC">
+      <Version>22.1.0.24</Version>
+    </Reference>
+    <Reference Include="SE.Standard">
+      <Version>22.1.0.9</Version>
+    </Reference>
+    <Reference Include="Standard.HMIExtensions">
+      <Version>22.1.0.5</Version>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CAT1\CAT1.cfg">
+      <DependentUpon>CAT1.fbt</DependentUpon>
+      <IEC61499Type>CAT</IEC61499Type>
+    </None>
+    <None Include="CAT_Conveyor\CAT_Conveyor.cfg">
+      <DependentUpon>CAT_Conveyor.fbt</DependentUpon>
+      <IEC61499Type>CAT</IEC61499Type>
+    </None>
+    <None Include="CAT_Conveyor_1\CAT_Conveyor_1.cfg">
+      <DependentUpon>CAT_Conveyor_1.fbt</DependentUpon>
+      <IEC61499Type>CAT</IEC61499Type>
+    </None>
+    <None Include="CAT_Jacks\CAT_Jacks.cfg">
+      <DependentUpon>CAT_Jacks.fbt</DependentUpon>
+      <IEC61499Type>CAT</IEC61499Type>
+    </None>
+    <None Include="CAT_Robotino\CAT_Robotino.cfg">
+      <DependentUpon>CAT_Robotino.fbt</DependentUpon>
+      <IEC61499Type>CAT</IEC61499Type>
+    </None>
+    <None Include="Configuration\Certificates\Certificates.xml" />
+    <None Include="ControlHMI\ControlHMI.cfg">
+      <DependentUpon>ControlHMI.fbt</DependentUpon>
+      <IEC61499Type>CAT</IEC61499Type>
+    </None>
+    <None Include="IEC61499.iecproj" />
+    <None Include="Project.doc.xml" />
+    <None Include="SnapshotCompiles\{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}\Default\IEC61499.snapshot" />
+    <None Include="System\09811e02-766c-40f4-be54-b7275e49af17.hcf">
+      <DependentUpon>System.sys</DependentUpon>
+      <IEC61499Type>System</IEC61499Type>
+    </None>
+    <None Include="System\snapshot.xml">
+      <DependentUpon>System.sys</DependentUpon>
+    </None>
+    <None Include="System\System.cfg">
+      <DependentUpon>System.sys</DependentUpon>
+      <IEC61499Type>System</IEC61499Type>
+    </None>
+    <None Include="System\System.Device.Properties.xml">
+      <DependentUpon>System.sys</DependentUpon>
+      <IEC61499Type>System</IEC61499Type>
+    </None>
+    <None Include="System\System.Topology.Binding.xml">
+      <DependentUpon>System.sys</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adapter_Handshake.adp">
+      <IEC61499Type>Adapter</IEC61499Type>
+    </Compile>
+    <Compile Include="Adapter_hmi.adp">
+      <IEC61499Type>Adapter</IEC61499Type>
+    </Compile>
+    <Compile Include="CAT1\CAT1.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+    </Compile>
+    <Compile Include="CAT1\CAT1_HMI.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+      <Usage>Private</Usage>
+      <DependentUpon>CAT1.fbt</DependentUpon>
+      <HMI>..\HMI\CAT1\CAT1_sDefault.cnv.cs</HMI>
+    </Compile>
+    <Compile Include="CAT_Conveyor\CAT_Conveyor.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+    </Compile>
+    <Compile Include="CAT_Conveyor\CAT_Conveyor_HMI.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+      <DependentUpon>CAT_Conveyor\CAT_Conveyor.fbt</DependentUpon>
+      <Usage>Private</Usage>
+    </Compile>
+    <Compile Include="CAT_Conveyor_1\CAT_Conveyor_1.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+    </Compile>
+    <Compile Include="CAT_Conveyor_1\CAT_Conveyor_1_HMI.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+      <DependentUpon>CAT_Conveyor_1\CAT_Conveyor_1.fbt</DependentUpon>
+      <Usage>Private</Usage>
+    </Compile>
+    <Compile Include="CAT_Jacks\CAT_Jacks.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+    </Compile>
+    <Compile Include="CAT_Jacks\CAT_Jacks_HMI.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+      <Usage>Private</Usage>
+      <DependentUpon>CAT_Jacks.fbt</DependentUpon>
+      <HMI>..\HMI\CAT_Jacks\CAT_Jacks_sDefault.cnv.cs</HMI>
+    </Compile>
+    <Compile Include="CAT_Robotino\CAT_Robotino.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+    </Compile>
+    <Compile Include="CAT_Robotino\CAT_Robotino_HMI.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+      <Usage>Private</Usage>
+      <DependentUpon>CAT_Robotino.fbt</DependentUpon>
+      <HMI>..\HMI\CAT_Robotino\CAT_Robotino_sDefault.cnv.cs</HMI>
+    </Compile>
+    <Compile Include="Composite1.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="ControlHMI\ControlHMI.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+    </Compile>
+    <Compile Include="ControlHMI\ControlHMI_HMI.fbt">
+      <IEC61499Type>CAT</IEC61499Type>
+      <Usage>Private</Usage>
+      <DependentUpon>ControlHMI.fbt</DependentUpon>
+      <HMI>..\HMI\ControlHMI\ControlHMI_sDefault.cnv.cs</HMI>
+    </Compile>
+    <Compile Include="ConveyorAdvanced.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="ConveyorAdvanced_2.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="Conveyor_SL_1_Adp.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="Conveyor_S_Adp.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="DeliveryOrganisation.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="DeliveryServices_Adp.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="HandshakeAdapter_Proposal.adp">
+      <IEC61499Type>Adapter</IEC61499Type>
+    </Compile>
+    <Compile Include="HandShakeMech_Rec.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="JackControl.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="JackDecode_New.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="JackHAL_HW.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="JackPlaceWP.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="JackRemoveWP.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="Jack_Sledge_Place.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="OperationStatus.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="OP_Select.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="OP_Selection.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="OP_Select_Str.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="Organization.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="Organization_Services.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="PlaceServices.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="Place_Services.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="Pneumatics.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="ProductionServices.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="Product_Recipe.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="Robotino.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+    <Compile Include="SledgeHAL.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="StandardSection.fbt">
+      <IEC61499Type>Composite</IEC61499Type>
+    </Compile>
+    <Compile Include="System\System.sys">
+      <IEC61499Type>System</IEC61499Type>
+    </Compile>
+    <Compile Include="trial.fbt">
+      <IEC61499Type>Basic</IEC61499Type>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration" />
+    <Folder Include="Configuration\Certificates" />
+    <Folder Include="License" />
+    <Folder Include="Log" />
+    <Folder Include="SnapshotCompiles\{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}" />
+    <Folder Include="SnapshotCompiles\{289867A9-45D6-4A34-ABC6-D3CB6ED05BFC}\Default" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CAT1\CAT1_CAT.offline.xml">
+      <DependentUpon>CAT1.fbt</DependentUpon>
+      <Plugin>OfflineParametrizationEditor</Plugin>
+      <IEC61499Type>CAT_OFFLINE</IEC61499Type>
+    </Content>
+    <Content Include="CAT1\CAT1_CAT.opcua.xml">
+      <DependentUpon>CAT1.fbt</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+    <Content Include="CAT1\CAT1_HMI.offline.xml">
+      <DependentUpon>CAT1.fbt</DependentUpon>
+      <Plugin>OfflineParametrizationEditor</Plugin>
+      <IEC61499Type>CAT_OFFLINE</IEC61499Type>
+    </Content>
+    <Content Include="CAT1\CAT1_HMI.opcua.xml">
+      <DependentUpon>CAT1.fbt</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Conveyor\CAT_Conveyor_CAT.offline.xml">
+      <DependentUpon>CAT_Conveyor.fbt</DependentUpon>
+      <Plugin>OfflineParametrizationEditor</Plugin>
+      <IEC61499Type>CAT_OFFLINE</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Conveyor\CAT_Conveyor_CAT.opcua.xml">
+      <DependentUpon>CAT_Conveyor.fbt</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Conveyor\CAT_Conveyor_HMI.offline.xml">
+      <DependentUpon>CAT_Conveyor.fbt</DependentUpon>
+      <Plugin>OfflineParametrizationEditor</Plugin>
+      <IEC61499Type>CAT_OFFLINE</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Conveyor\CAT_Conveyor_HMI.opcua.xml">
+      <DependentUpon>CAT_Conveyor.fbt</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Conveyor_1\CAT_Conveyor_1_CAT.offline.xml">
+      <DependentUpon>CAT_Conveyor_1.fbt</DependentUpon>
+      <Plugin>OfflineParametrizationEditor</Plugin>
+      <IEC61499Type>CAT_OFFLINE</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Conveyor_1\CAT_Conveyor_1_CAT.opcua.xml">
+      <DependentUpon>CAT_Conveyor_1.fbt</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Conveyor_1\CAT_Conveyor_1_HMI.offline.xml">
+      <DependentUpon>CAT_Conveyor_1.fbt</DependentUpon>
+      <Plugin>OfflineParametrizationEditor</Plugin>
+      <IEC61499Type>CAT_OFFLINE</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Conveyor_1\CAT_Conveyor_1_HMI.opcua.xml">
+      <DependentUpon>CAT_Conveyor_1.fbt</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Jacks\CAT_Jacks_CAT.offline.xml">
+      <DependentUpon>CAT_Jacks.fbt</DependentUpon>
+      <Plugin>OfflineParametrizationEditor</Plugin>
+      <IEC61499Type>CAT_OFFLINE</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Jacks\CAT_Jacks_CAT.opcua.xml">
+      <DependentUpon>CAT_Jacks.fbt</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Jacks\CAT_Jacks_HMI.opcua.xml">
+      <DependentUpon>CAT_Jacks.fbt</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Robotino\CAT_Robotino_CAT.offline.xml">
+      <DependentUpon>CAT_Robotino.fbt</DependentUpon>
+      <Plugin>OfflineParametrizationEditor</Plugin>
+      <IEC61499Type>CAT_OFFLINE</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Robotino\CAT_Robotino_CAT.opcua.xml">
+      <DependentUpon>CAT_Robotino.fbt</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Robotino\CAT_Robotino_HMI.offline.xml">
+      <DependentUpon>CAT_Robotino.fbt</DependentUpon>
+      <Plugin>OfflineParametrizationEditor</Plugin>
+      <IEC61499Type>CAT_OFFLINE</IEC61499Type>
+    </Content>
+    <Content Include="CAT_Robotino\CAT_Robotino_HMI.opcua.xml">
+      <DependentUpon>CAT_Robotino.fbt</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+    <Content Include="ControlHMI\ControlHMI_CAT.offline.xml">
+      <DependentUpon>ControlHMI.fbt</DependentUpon>
+      <Plugin>OfflineParametrizationEditor</Plugin>
+      <IEC61499Type>CAT_OFFLINE</IEC61499Type>
+    </Content>
+    <Content Include="ControlHMI\ControlHMI_CAT.opcua.xml">
+      <DependentUpon>ControlHMI.fbt</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+    <Content Include="ControlHMI\ControlHMI_HMI.offline.xml">
+      <DependentUpon>ControlHMI.fbt</DependentUpon>
+      <Plugin>OfflineParametrizationEditor</Plugin>
+      <IEC61499Type>CAT_OFFLINE</IEC61499Type>
+    </Content>
+    <Content Include="ControlHMI\ControlHMI_HMI.opcua.xml">
+      <DependentUpon>ControlHMI.fbt</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+    <Content Include="System\System.opcua.xml">
+      <DependentUpon>System.sys</DependentUpon>
+      <Plugin>OPCUAConfigurator</Plugin>
+      <IEC61499Type>CAT_OPCUA</IEC61499Type>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(SharpDevelopBinPath)\NxtControl.Build.61499.Targets" />
+</Project>

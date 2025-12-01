@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="e1a139cc-e16a-4ee6-9483-f0050c4ebe61" Name="ControlHMI" Comment="Composite Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="2" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Schneider Electric" Version="0.0" Author="Pranay Jhunjhunwala" Date="23/09/2021" Remarks="template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" />
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+    </EventOutputs>
+    <Plugs>
+      <AdapterDeclaration Name="Ouput" Type="Adapter_hmi" Namespace="Main" x="2140" y="1040" />
+    </Plugs>
+  </InterfaceList>
+  <FBNetwork>
+    <FB ID="2" Name="IThis" Type="ControlHMI_HMI" x="900" y="980" Namespace="Main">
+      <Parameter Name="QI" Value="TRUE" />
+    </FB>
+    <Input Name="INIT" x="500" y="992" Type="Event" />
+    <Output Name="INITO" x="1620" y="992" Type="Event" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="IThis.INIT" />
+      <Connection Source="Ouput.E_P" Destination="IThis.E_ProcessStatus" dx1="40" dx2="30" dy="-170" />
+      <Connection Source="IThis.INITO" Destination="INITO" />
+      <Connection Source="IThis.E_S" Destination="Ouput.E_S" />
+      <Connection Source="IThis.E_R" Destination="Ouput.E_R" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Ouput.PROCESS" Destination="IThis.ProcessStatus" dx1="40" dx2="60" dy="320">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+      <Connection Source="IThis.START" Destination="Ouput.START" dx1="114.6042" />
+      <Connection Source="IThis.RESET" Destination="Ouput.RESET" dx1="164.6042">
+        <AvoidsNodes>false</AvoidsNodes>
+      </Connection>
+    </DataConnections>
+  </FBNetwork>
+</FBType>

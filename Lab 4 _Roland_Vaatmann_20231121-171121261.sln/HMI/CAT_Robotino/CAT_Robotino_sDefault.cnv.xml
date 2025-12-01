@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping>
+  <EventInputs>
+    <Event Name="E_Dock">DockToEnas</Event>
+    <Event Name="E_RunConv">RunConveyor</Event>
+    <Event Name="E_NewCup">MakeNewCup</Event>
+  </EventInputs>
+  <EventOutputs>
+    <Event Name="Doc">DockingBool</Event>
+    <Event Name="E_Cnv1">CNV1</Event>
+    <Event Name="E_SenRobo">SensorRobotino</Event>
+  </EventOutputs>
+  <Inputs>
+    <Input Name="DockToEnas" Type="BOOL" />
+    <Input Name="RunConveyor" Type="BOOL" />
+    <Input Name="MakeNewCup" Type="BOOL" />
+  </Inputs>
+  <Outputs>
+    <Output Name="DockingBool" Type="BOOL" />
+    <Output Name="CNV1" Type="BOOL" />
+    <Output Name="SensorRobotino" Type="BOOL" />
+  </Outputs>
+</Mapping>

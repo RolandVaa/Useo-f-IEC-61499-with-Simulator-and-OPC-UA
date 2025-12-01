@@ -1,0 +1,32 @@
+/*
+ * Created by EcoStruxure Automation Expert.
+ * User: prana
+ * Date: 16/08/2021
+ * Time: 11:06 am
+ * 
+ */
+using System;
+using System.ComponentModel;
+using System.Collections;
+using NxtControl.GuiFramework;
+
+namespace HMI.Main.Symbols.CAT_Conveyor_1
+{
+	/// <summary>
+	/// Summary description for sDefault.
+	/// </summary>
+	partial class sDefault
+	{
+
+		#region Component Designer generated code
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+      			this.Name = "sDefault";
+		}
+		#endregion
+	}
+}

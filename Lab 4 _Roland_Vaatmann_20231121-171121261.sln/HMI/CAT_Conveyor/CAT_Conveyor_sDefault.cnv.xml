@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping>
+  <EventInputs>
+    <Event Name="REQ">C_Drive;C_Drive_Cur</Event>
+  </EventInputs>
+  <EventOutputs>
+    <Event Name="CNF">C_Sensor</Event>
+  </EventOutputs>
+  <Inputs>
+    <Input Name="C_Drive" Type="BOOL" />
+    <Input Name="C_Drive_Cur" Type="BOOL" />
+  </Inputs>
+  <Outputs>
+    <Output Name="C_Sensor" Type="BOOL" />
+  </Outputs>
+</Mapping>

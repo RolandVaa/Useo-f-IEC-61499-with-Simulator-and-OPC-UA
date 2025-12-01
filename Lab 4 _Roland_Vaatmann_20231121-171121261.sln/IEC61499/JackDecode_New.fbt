@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="8a7cf428-3cd8-464f-9d33-758ad546e656" Name="JackDecode_New" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="11/3/2020" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="ActionIP" />
+        <With Var="ActionStatus" />
+      </Event>
+      <Event Name="E_ActionIP" Comment="Normal Execution Request">
+        <With Var="ActionIP" />
+      </Event>
+      <Event Name="E_ActionStatus">
+        <With Var="ActionStatus" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="J1P" Comment="Execution Confirmation" />
+      <Event Name="J1PA" />
+      <Event Name="J1R" />
+      <Event Name="J1RA" />
+      <Event Name="E_OperationStarted" />
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ActionIP" Type="STRING" Comment="Input event qualifier" />
+      <VarDeclaration Name="ActionStatus" Type="STRING" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,REQ" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="3060.942" y="1069.412" />
+      <ECState Name="INIT" Comment="Initialization" x="3039.529" y="281.1764">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="J1P" x="431.9999" y="760">
+        <ECAction Output="J1P" />
+      </ECState>
+      <ECState Name="J1PA" x="3256" y="2992">
+        <ECAction Output="J1PA" />
+      </ECState>
+      <ECState Name="J1R" x="6336" y="2268">
+        <ECAction Output="J1R" />
+      </ECState>
+      <ECState Name="J1RA" x="6468" y="643.9999">
+        <ECAction Output="J1RA" />
+      </ECState>
+      <ECState Name="STATE1" x="1048" y="1632">
+        <ECAction Output="E_OperationStarted" />
+      </ECState>
+      <ECState Name="STATE2" x="1152" y="2472">
+        <ECAction Output="E_OperationStarted" />
+      </ECState>
+      <ECState Name="STATE3" x="4388" y="2796">
+        <ECAction Output="E_OperationStarted" />
+      </ECState>
+      <ECState Name="STATE4" x="6508" y="1884">
+        <ECAction Output="E_OperationStarted" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="3050.09" y="750.2941">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="763.3329,222.3181,761.7848,165.3289" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="3129.867" y="673.2573">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="786.7756,139.65,788.3237,196.6392" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="J1P" Condition="E_ActionIP &amp; ((ActionIP = 'J1P') OR (ActionIP = 'J2P'))" x="1818.858" y="487.678">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="557.1031,102.6517,362.5564,77.60072" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="J1PA" Condition="E_ActionIP &amp; ((ActionIP = 'J1PA')  OR (ActionIP = 'J2PA'))" x="3044.743" y="2057.204">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="745.8605,438.9637,759.5841,594.0547" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="J1R" Condition="E_ActionIP &amp; ((ActionIP = 'J1R') OR (ActionIP = 'J2R'))" x="4781.93" y="1789.816">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1073.434,409.512,1329.465,503.1031" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="J1RA" Condition="E_ActionIP &amp; ((ActionIP = 'J1RA') OR (ActionIP = 'J2RA'))" x="4817.84" y="705.3405">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1075.63,181.6166,1340.335,149.1863" />
+      </ECTransition>
+      <ECTransition Source="J1P" Destination="START" Condition="1" x="1435.397" y="891.6512">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="229.0538,208.5664,440.2537,233.4187" />
+      </ECTransition>
+      <ECTransition Source="J1PA" Destination="START" Condition="1" x="2690.601" y="2132.747">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="647.8121,624.6933,628.4792,458.6867" />
+      </ECTransition>
+      <ECTransition Source="J1R" Destination="START" Condition="1" x="4598.938" y="2107.101">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1266.884,605.5664,1019.006,515.7949" />
+      </ECTransition>
+      <ECTransition Source="J1RA" Destination="START" Condition="1" x="5375.867" y="1013.837">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1523.31,250.0299,1260.315,278.4863" />
+      </ECTransition>
+      <ECTransition Source="J1P" Destination="STATE1" Condition="E_ActionStatus &amp; ( ActionStatus = 'PS')" x="633.5552" y="1196.431">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="130.2811,270.2448,172.4201,328.0423" />
+      </ECTransition>
+      <ECTransition Source="J1PA" Destination="STATE2" Condition="E_ActionStatus &amp; ( ActionStatus = 'PS')" x="2193.614" y="3335.374">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="628.2032,898.8912,468.9838,860.6614" />
+      </ECTransition>
+      <ECTransition Source="J1R" Destination="STATE3" Condition="E_ActionStatus &amp; ( ActionStatus = 'RS')" x="5235.245" y="2491.735">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1368.491,602.1629,1225.934,640.1265" />
+      </ECTransition>
+      <ECTransition Source="J1RA" Destination="STATE4" Condition="E_ActionStatus &amp; ( ActionStatus = 'RS')" x="6567.681" y="1279.442">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1644.526,274.1955,1650.542,368.0993" />
+      </ECTransition>
+      <ECTransition Source="J1P" Destination="J1P" Condition="E_ActionIP &amp; ((ActionIP = 'J1P') OR (ActionIP = 'J2P'))" x="431.9999" y="942.0861" />
+      <ECTransition Source="J1PA" Destination="J1PA" Condition="E_ActionIP &amp; ((ActionIP = 'J1PA')  OR (ActionIP = 'J2PA'))" x="3256" y="3174.086" />
+      <ECTransition Source="J1R" Destination="J1R" Condition="E_ActionIP &amp; ((ActionIP = 'J1R') OR (ActionIP = 'J2R'))" x="6336" y="2450.086" />
+      <ECTransition Source="J1RA" Destination="J1RA" Condition="E_ActionIP &amp; ((ActionIP = 'J1RA') OR (ActionIP = 'J2RA'))" x="6675.302" y="239.5869">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="1782.605,69.54419,1582.605,-8.455845" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

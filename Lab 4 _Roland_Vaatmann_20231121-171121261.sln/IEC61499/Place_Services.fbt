@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd">
+<FBType GUID="aea13c98-d6b5-4805-ba12-464399551584" Name="Place_Services" Comment="Basic Function Block Type" Namespace="Main">
+  <Attribute Name="Configuration.FB.IDCounter" Value="0" />
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="nxtControl GmbH" Version="0.0" Author="prana" Date="11/3/2020" Remarks="Template" />
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request">
+        <With Var="ActionIP" />
+        <With Var="ActionStatus" />
+      </Event>
+      <Event Name="E_ActionIP" Comment="Normal Execution Request">
+        <With Var="ActionIP" />
+      </Event>
+      <Event Name="E_ActionStatus">
+        <With Var="ActionStatus" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" />
+      <Event Name="E_Jack1">
+        <With Var="Jack1" />
+      </Event>
+      <Event Name="E_Jack2">
+        <With Var="Jack2" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ActionIP" Type="STRING" Comment="Input event qualifier" />
+      <VarDeclaration Name="ActionStatus" Type="STRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Jack1" Type="STRING" />
+      <VarDeclaration Name="Jack2" Type="STRING" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <Attribute Name="FBType.Basic.Algorithm.Order" Value="INIT,REQ,Jack1,Jack2" />
+    <ECC>
+      <ECState Name="START" Comment="Initial State" x="2892.942" y="1381.412" />
+      <ECState Name="INIT" Comment="Initialization" x="2899.529" y="857.1764">
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="Jack1" x="4016" y="2332">
+        <ECAction Algorithm="Jack1" Output="E_Jack1" />
+      </ECState>
+      <ECState Name="Jack2" x="1864" y="2356">
+        <ECAction Algorithm="Jack2" Output="E_Jack2" />
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="2762.781" y="1121.877">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="683.7587,298.1292,682.8163,263.2398" />
+      </ECTransition>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="3013.664" y="1125.701">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="759.9916,264.4769,759.9415,299.4418" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="Jack1" Condition="E_ActionIP &amp; ( (ActionIP = 'J1P') OR (ActionIP = 'J1R') OR (ActionIP = 'J1PA') OR (ActionIP = 'J1RA') )" x="3347.09" y="1931.405">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="789.9192,453.3511,872.3492,524.5819" />
+      </ECTransition>
+      <ECTransition Source="Jack1" Destination="START" Condition="1" x="3678.326" y="1737.062">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="974.4033,460.6744,892.3236,389.4596" />
+      </ECTransition>
+      <ECTransition Source="START" Destination="Jack2" Condition="E_ActionIP &amp; ( (ActionIP = 'J2P') OR (ActionIP = 'J2R') OR (ActionIP = 'J2PA') OR (ActionIP = 'J2RA') )" x="2493.385" y="1961.098">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="667.1738,461.7198,591.4608,533.9617" />
+      </ECTransition>
+      <ECTransition Source="Jack2" Destination="START" Condition="1" x="2125.18" y="1729.07">
+        <Attribute Name="Configuration.Transaction.BezierPoints" Value="479.7162,458.1613,550.9747,384.9707" />
+      </ECTransition>
+    </ECC>
+    <Algorithm Name="INIT" Comment="Initialization algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="REQ" Comment="Normally executed algorithm">
+      <ST Text=";" />
+    </Algorithm>
+    <Algorithm Name="Jack1">
+      <ST Text="Jack1 := ActionIP;" />
+    </Algorithm>
+    <Algorithm Name="Jack2">
+      <ST Text="Jack2 := ActionIP;" />
+    </Algorithm>
+  </BasicFB>
+</FBType>

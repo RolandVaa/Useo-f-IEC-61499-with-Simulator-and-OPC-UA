@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OPCUAObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OPCUAVariable UID="65DEEC3D87B9126B" Enabled="false">
+    <OPCUAAttribute Name="AccessLevel" Value="1" Locked="true" AttributeMask="Read Only;True" />
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath}</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+  <OPCUAVariable UID="440AD628603ED38B" Enabled="false">
+    <OPCUAAttribute Name="AccessLevel" Value="1" Locked="true" AttributeMask="Read Only;True" />
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath}</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+  <OPCUAVariable UID="FE7C9188AAFEC88C" Enabled="false">
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath};Trigger=e_bool_out</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+  <OPCUAVariable UID="29F2EA830D91CB3" Enabled="false">
+    <OPCUAAttribute Name="Exposed" Value="True" Locked="false" AttributeMask="True;True|False;True" />
+    <Extensions>
+      <Extension>
+        <RTAddress>V1;${VariableFullPath};Trigger=e_int_out</RTAddress>
+      </Extension>
+    </Extensions>
+  </OPCUAVariable>
+</OPCUAObject>

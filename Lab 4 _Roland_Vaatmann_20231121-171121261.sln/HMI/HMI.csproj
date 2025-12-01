@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{EFDE68FD-1AB8-4242-800B-E8CC3B5EABCC}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Windows</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>HMI</RootNamespace>
+    <AssemblyName>HMI</AssemblyName>
+    <HMILibraries>HMIBaseSymbols:</HMILibraries>
+    <Theme>DefaultLight:Default|DefaultLight</Theme>
+    <NxtVersion>22.1.0.0</NxtVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ProjectType>HMI</ProjectType>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <CanvasLookAndFeel>Theme</CanvasLookAndFeel>
+    <CanvasSize>1280,900,1280,980,Default,True,140,30</CanvasSize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\$(Platform)\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\$(Platform)\Release</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Windows' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Windows' ">
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Canvas1.cnv.cs">
+      <Canvas>true</Canvas>
+    </Compile>
+    <Compile Include="Canvas1.cnv.Designer.cs">
+      <DependentUpon>Canvas1.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT1\CAT1.def.cs" />
+    <Compile Include="CAT1\CAT1.event.cs" />
+    <Compile Include="CAT1\CAT1_sDefault.cnv.cs" />
+    <Compile Include="CAT1\CAT1_sDefault.cnv.Designer.cs">
+      <DependentUpon>CAT1_sDefault.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT_Conveyor\CAT_Conveyor.def.cs" />
+    <Compile Include="CAT_Conveyor\CAT_Conveyor.event.cs" />
+    <Compile Include="CAT_Conveyor\CAT_Conveyor_sDefault.cnv.cs" />
+    <Compile Include="CAT_Conveyor\CAT_Conveyor_sDefault.cnv.Designer.cs">
+      <DependentUpon>CAT_Conveyor_sDefault.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT_Conveyor_1\CAT_Conveyor_1.def.cs" />
+    <Compile Include="CAT_Conveyor_1\CAT_Conveyor_1.event.cs" />
+    <Compile Include="CAT_Conveyor_1\CAT_Conveyor_1_sDefault.cnv.cs" />
+    <Compile Include="CAT_Conveyor_1\CAT_Conveyor_1_sDefault.cnv.Designer.cs">
+      <DependentUpon>CAT_Conveyor_1_sDefault.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT_Jacks\CAT_Jacks.def.cs" />
+    <Compile Include="CAT_Jacks\CAT_Jacks.event.cs" />
+    <Compile Include="CAT_Jacks\CAT_Jacks_sDefault.cnv.cs" />
+    <Compile Include="CAT_Jacks\CAT_Jacks_sDefault.cnv.Designer.cs">
+      <DependentUpon>CAT_Jacks_sDefault.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT_Robotino\CAT_Robotino.def.cs" />
+    <Compile Include="CAT_Robotino\CAT_Robotino.event.cs" />
+    <Compile Include="CAT_Robotino\CAT_Robotino_sDefault.cnv.cs" />
+    <Compile Include="CAT_Robotino\CAT_Robotino_sDefault.cnv.Designer.cs">
+      <DependentUpon>CAT_Robotino_sDefault.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Colors\ProjectColors.cs" />
+    <Compile Include="Colors\ProjectDrawingObjects.cs" />
+    <Compile Include="ControlHMI\ControlHMI.def.cs" />
+    <Compile Include="ControlHMI\ControlHMI.event.cs" />
+    <Compile Include="ControlHMI\ControlHMI_sDefault.cnv.cs" />
+    <Compile Include="ControlHMI\ControlHMI_sDefault.cnv.Designer.cs">
+      <DependentUpon>ControlHMI_sDefault.cnv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StartCanvas.cnv.cs" />
+    <Compile Include="StartCanvas.cnv.Designer.cs">
+      <DependentUpon>StartCanvas.cnv.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Alarms\AlarmClasses.xml" />
+    <None Include="CAT_Conveyor\CAT_Conveyor.Design.resx" />
+    <None Include="CAT_Conveyor_1\CAT_Conveyor_1.Design.resx" />
+    <None Include="Colors\Default.color.theme" />
+    <None Include="Colors\Default.do.theme" />
+    <None Include="Colors\DefaultLight.color.theme" />
+    <None Include="Colors\DefaultLight.do.theme" />
+    <None Include="Colors\ProjectColors.xml" />
+    <None Include="Colors\ProjectDrawingObjects.xml" />
+    <None Include="ImageStorage\ImageStorage.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Alarms\AlarmClasses.xml" />
+    <EmbeddedResource Include="Alarms\SystemAlarmClasses.xml" />
+    <EmbeddedResource Include="Canvas1.cnv.resx">
+      <DependentUpon>Canvas1.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT1\CAT1.Design.resx" />
+    <EmbeddedResource Include="CAT1\CAT1_sDefault.cnv.resx">
+      <DependentUpon>CAT1_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT1\CAT1_sDefault.cnv.xml">
+      <DependentUpon>CAT1_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT_Conveyor\CAT_Conveyor_sDefault.cnv.resx">
+      <DependentUpon>CAT_Conveyor_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT_Conveyor\CAT_Conveyor_sDefault.cnv.xml">
+      <DependentUpon>CAT_Conveyor_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT_Conveyor_1\CAT_Conveyor_1_sDefault.cnv.resx">
+      <DependentUpon>CAT_Conveyor_1_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT_Conveyor_1\CAT_Conveyor_1_sDefault.cnv.xml">
+      <DependentUpon>CAT_Conveyor_1_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT_Jacks\CAT_Jacks.Design.resx" />
+    <EmbeddedResource Include="CAT_Jacks\CAT_Jacks_sDefault.cnv.resx">
+      <DependentUpon>CAT_Jacks_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT_Jacks\CAT_Jacks_sDefault.cnv.xml">
+      <DependentUpon>CAT_Jacks_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT_Robotino\CAT_Robotino.Design.resx" />
+    <EmbeddedResource Include="CAT_Robotino\CAT_Robotino_sDefault.cnv.resx">
+      <DependentUpon>CAT_Robotino_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT_Robotino\CAT_Robotino_sDefault.cnv.xml">
+      <DependentUpon>CAT_Robotino_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configurations\HistoryTrend.xml" />
+    <EmbeddedResource Include="Configurations\Journalling.xml" />
+    <EmbeddedResource Include="Configurations\TagValueEditor.xml" />
+    <EmbeddedResource Include="ControlHMI\ControlHMI.Design.resx" />
+    <EmbeddedResource Include="ControlHMI\ControlHMI_sDefault.cnv.resx">
+      <DependentUpon>ControlHMI_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlHMI\ControlHMI_sDefault.cnv.xml">
+      <DependentUpon>ControlHMI_sDefault.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartCanvas.cnv.resx">
+      <DependentUpon>StartCanvas.cnv.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="CommunicationProfile">
+      <HintPath>CommunicationProfile</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HMIBaseSymbols">
+      <HintPath>HMIBaseSymbols</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="NxtControl.ComponentModel">
+      <HintPath>NxtControl.ComponentModel</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NxtControl.GuiFramework">
+      <HintPath>NxtControl.GuiFramework</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SE.DPAC.HMI">
+      <Version>22.1.0.24</Version>
+      <HintPath>SE.DPAC.HMI</HintPath>
+    </Reference>
+    <Reference Include="Standard.HMIExtensions.HMI">
+      <Version>22.1.0.5</Version>
+      <HintPath>Standard.HMIExtensions.HMI</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(SharpDevelopBinPath)\SharpDevelop.Build.CSharp.targets" />
+</Project>
