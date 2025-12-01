@@ -85,7 +85,4 @@ A video showcasing:
 - Robotino AGV delivery  
 - OPC UA-driven VC simulation  
 
-**Video (link or embedded):**
-
-```md
-[▶ Watch the demonstration video](video1830025706.mp4)
+<video src="video1830025706.mp4" controls width="600"></video>
